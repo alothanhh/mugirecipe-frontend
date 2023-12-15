@@ -34,18 +34,18 @@ const Main = () => {
           }
         },
         headerShown: false,
-        // tabBarLabelStyle: {
-        //   fontFamily: 'montserrat-regular',
-        //   fontSize: 12,
-        //   paddingBottom: 5,
-        // },
+        tabBarLabelStyle: {
+          // fontFamily: 'montserrat-regular',
+          paddingBottom: 0,
+        },
+        tabBarShowLabel: false,
         tabBarInactiveTintColor: colors.secondary,
         tabBarActiveTintColor: colors.primary,
         tabBarHideOnKeyboard: true,
         tabBarVisibilityAnimationConfig: {},
         tabBarStyle: {
-          height: '8%',
-          paddingHorizontal: 30,
+          // height: '%',
+          paddingHorizontal: 40,
         },
       })}
     >
@@ -57,7 +57,7 @@ const Main = () => {
       <Tab.Screen
         name="FavoriteTab"
         component={FavoriteContainer}
-        options={{ title: 'Favorite' }}
+        options={{ title: 'Favorite', headerTitle: "Favorite Recipes" }}
       />
       <Tab.Screen
         name="UnknownTab"
