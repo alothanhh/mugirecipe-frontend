@@ -12,7 +12,9 @@ const Stack = createNativeStackNavigator<FavoriteStackParamList>();
 const FavoriteContainer = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name={FavoriteScreens.FAVORITE} component={Favorite} />
+      <Stack.Screen name={FavoriteScreens.FAVORITE} component={Favorite} options={{
+        headerTitle: "Favorite Recipes"
+      }} />
     </Stack.Navigator>
   );
 };

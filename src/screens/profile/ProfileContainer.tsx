@@ -12,7 +12,9 @@ const Stack = createNativeStackNavigator<ProfileStackParamList>();
 const ProfileContainer = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name={ProfileScreens.PROFILE} component={Profile} />
+      <Stack.Screen name={ProfileScreens.PROFILE} component={Profile} options={{
+        headerTitle: "My Profile"
+      }} />
     </Stack.Navigator>
   );
 };
