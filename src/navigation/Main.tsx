@@ -1,5 +1,5 @@
-import React from 'react';
-import { Image } from 'react-native';
+import React, { FC } from 'react';
+import { View, TouchableOpacity, GestureResponderEvent } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import HomeContainer from '@/screens/home/HomeContainer';
@@ -8,8 +8,38 @@ import UnknownContainer from '@/screens/unknown/UnknownContainer';
 import ProfileContainer from '@/screens/profile/ProfileContainer';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import AntDesign from '@expo/vector-icons/AntDesign';
+import { Feather } from '@expo/vector-icons';
 import colors from '@/constants/colors';
+import ScanningContainer from '@/screens/scanning/ScanningContainer';
 const Tab = createBottomTabNavigator();
+
+type ScanningButtonTypes = {
+  children: React.ReactNode;
+  onPress(): void | undefined;
+};
+const ScanningButton: FC<ScanningButtonTypes> = ({ children, onPress }) => {
+  return (
+    <TouchableOpacity
+      style={{
+        top: -25,
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}
+      onPress={onPress}
+    >
+      <View
+        style={{
+          width: 70,
+          height: 70,
+          borderRadius: 35,
+          backgroundColor: colors.primary,
+        }}
+      >
+        {children}
+      </View>
+    </TouchableOpacity>
+  );
+};
 
 const Main = () => {
   return (
@@ -26,7 +56,8 @@ const Main = () => {
               return (
                 <AntDesign name="questioncircleo" size={24} color={color} />
               );
-
+            case 'ScanningTab':
+              return <Feather name="camera" size={24} color="#FFFFFF" />;
             case 'ProfileTab':
               return (
                 <Ionicons name="ios-settings-outline" size={24} color={color} />
@@ -57,7 +88,14 @@ const Main = () => {
       <Tab.Screen
         name="FavoriteTab"
         component={FavoriteContainer}
-        options={{ title: 'Favorite', headerTitle: "Favorite Recipes" }}
+        options={{ title: 'Favorite' }}
+      />
+      <Tab.Screen
+        name="ScanningTab"
+        component={ScanningContainer}
+        options={{
+          tabBarButton: (props: any) => <ScanningButton {...props} />,
+        }}
       />
       <Tab.Screen
         name="UnknownTab"
