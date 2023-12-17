@@ -1,3 +1,3 @@
-export enum ProfileScreens  {
+export enum ProfileScreens {
   PROFILE = "Profile"
-};
+}

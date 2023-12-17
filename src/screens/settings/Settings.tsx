@@ -1,12 +1,12 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 
-const Unknown = () => {
+const Settings = () => {
   return (
     <View>
-      <Text>Unknown screen!</Text>
+      <Text>Settings screen!</Text>
     </View>
   );
 };
 
-export default Unknown;
+export default Settings;

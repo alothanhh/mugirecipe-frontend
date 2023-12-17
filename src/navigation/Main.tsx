@@ -4,8 +4,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import HomeContainer from '@/screens/home/HomeContainer';
 import FavoriteContainer from '@/screens/favorite/FavoriteContainer';
-import UnknownContainer from '@/screens/unknown/UnknownContainer';
 import ProfileContainer from '@/screens/profile/ProfileContainer';
+import SettingsContainer from '@/screens/settings/SettingsContainer';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { Feather } from '@expo/vector-icons';
@@ -52,13 +52,13 @@ const Main = () => {
               return <Ionicons name="home-outline" size={24} color={color} />;
             case 'FavoriteTab':
               return <Ionicons name="heart-outline" size={24} color={color} />;
-            case 'UnknownTab':
+            case 'ProfileTab':
               return (
                 <AntDesign name="questioncircleo" size={24} color={color} />
               );
             case 'ScanningTab':
               return <Feather name="camera" size={24} color="#FFFFFF" />;
-            case 'ProfileTab':
+            case 'SettingsTab':
               return (
                 <Ionicons name="ios-settings-outline" size={24} color={color} />
               );
@@ -98,14 +98,14 @@ const Main = () => {
         }}
       />
       <Tab.Screen
-        name="UnknownTab"
-        component={UnknownContainer}
-        options={{ title: 'Unknown' }}
-      />
-      <Tab.Screen
         name="ProfileTab"
         component={ProfileContainer}
         options={{ title: 'Profile' }}
+      />
+      <Tab.Screen
+        name="SettingsTab"
+        component={SettingsContainer}
+        options={{ title: 'Settings' }}
       />
     </Tab.Navigator>
   );
