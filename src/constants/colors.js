@@ -1,5 +1,13 @@
+
+export default colors = {
+
+
 export default color = {
   // Primary Color
+  primary: '#B73E3E',
+  secondary: '#7D858E',
+  background: '#F2F2F2',
+  placeholder: "#7D858E",
   darkred: '#8B1A10',
   lightred: '#B73E3E',
   black: '#000000',
@@ -11,4 +19,5 @@ export default color = {
   darkgray: '#7D858E',
   green: '#00BF71',
   yellow: '#FFB100'
+
 };
