@@ -32,7 +32,7 @@ const ScanningButton: FC<ScanningButtonTypes> = ({ children, onPress }) => {
           width: 70,
           height: 70,
           borderRadius: 35,
-          backgroundColor: colors.primary,
+          backgroundColor: colors.lightred,
         }}
       >
         {children}
@@ -70,8 +70,8 @@ const Main = () => {
           paddingBottom: 0,
         },
         tabBarShowLabel: false,
-        tabBarInactiveTintColor: colors.secondary,
-        tabBarActiveTintColor: colors.primary,
+        tabBarInactiveTintColor: colors.darkgray,
+        tabBarActiveTintColor: colors.lightred,
         tabBarHideOnKeyboard: true,
         tabBarVisibilityAnimationConfig: {},
         tabBarStyle: {

@@ -1,22 +1,24 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { StyleSheet, Text, View, Button, TouchableOpacity, Image } from 'react-native';
 import colors from '@/constants/colors';
-// import avatar from '../../../assets/images/avatar.jpg'
+//Navigation import
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
-const Profile = () => {
+const Profile = (props: any) => {
+
   return (
     <View style={{ margin: 25 }}>
       <Text style={styles.titleText}>
-        My Profile
+        My Profilee
         {'\n'}
       </Text>
       <Text style={styles.subTitleText}>Personal Detail</Text>
       <View style={{
-        backgroundColor: '#FFFFFF',
+        backgroundColor: colors.white,
         padding: 15,
         borderRadius: 30,
         marginTop: 10,
-        // justifyContent: 'center',
         alignItems: 'center'
       }}>
         <View style={{
@@ -35,14 +37,14 @@ const Profile = () => {
             <Text style={styles.subTitleText}>Tran Duc Tuan</Text>
             <Text style={styles.textInfo}>tranductuan@gmail.com</Text>
             <View style={{
-              borderBottomColor: '#BEBEBE',
+              borderBottomColor: colors.darkgray,
               borderBottomWidth: 1,
               margin: 3
             }}>
             </View>
             <Text style={styles.textInfo}>+84 9011039271</Text>
             <View style={{
-              borderBottomColor: '#BEBEBE',
+              borderBottomColor: colors.darkgray,
               borderBottomWidth: 1,
               margin: 3
             }}>
@@ -52,9 +54,12 @@ const Profile = () => {
         </View>
         <TouchableOpacity
           style={styles.buttonStyle}
-          onPress={() => { }}  >
+          onPress={() =>
+            props.navigation.navigate('EditProfile')
+          }
+        >
           <Text style={{
-            color: '#FFFFFF',
+            color: colors.white,
             alignSelf: 'center',
             fontSize: 16,
             fontWeight: '500',
@@ -62,18 +67,18 @@ const Profile = () => {
         </TouchableOpacity>
       </View>
       <View style={{
-        backgroundColor: '#FFFFFF',
+        backgroundColor: colors.white,
         padding: 20,
         borderRadius: 30,
         marginTop: 20,
         justifyContent: 'space-between',
         alignItems: 'center',
-        display:'flex',
+        display: 'flex',
         flexDirection: 'row'
       }}>
-        <Text style={[styles.subTitleText,{}]}>Change Password</Text>
-        <Image source={{uri: 'https://img.icons8.com/ios/50/more-than.png'}}
-       style={{width: 30, height: 30}} />
+        <Text style={[styles.subTitleText, {}]}>Change Password</Text>
+        <Image source={{ uri: 'https://img.icons8.com/ios/50/more-than.png' }}
+          style={{ width: 30, height: 30 }} />
       </View>
     </View>
   );
@@ -87,6 +92,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Cochin',
   },
   titleText: {
+    // fontFamily: 'Poppins-Medium',
     fontSize: 27,
     fontWeight: '600', //bold
   },
@@ -95,17 +101,16 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   textInfo: {
-    color: '#BEBEBE',
-    // alignSelf: 'center',
+    color: colors.darkgray,
     fontSize: 16,
     fontWeight: '500',
     padding: 3,
   },
   buttonStyle: {
-    backgroundColor: colors.primary,
+    backgroundColor: colors.lightred,
     borderRadius: 30,
     padding: 15,
-    width: '50%',
+    width: '70%',
     marginTop: 20,
     marginBottom: 10
   }
