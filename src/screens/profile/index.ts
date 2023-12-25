@@ -1,3 +1,4 @@
 export enum ProfileScreens {
-  PROFILE = "Profile"
+  PROFILE = "Profile",
+  EDIT_PROFILE = "EditProfile"
 }
