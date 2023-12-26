@@ -9,10 +9,13 @@ import {
   TextInput,
   Image,
 } from 'react-native';
+import { AntDesign } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { AntDesign } from '@expo/vector-icons';
-import FoodCategory from '@/components/categories/FoodCategory';
+
+import FoodCategoryList from '@/components/categories/FoodCategoryList';
+import CategoryItemList from '@/components/categories/CategoryItemList';
+import RecipeItemList from '@/components/recipes/RecipeItemList';
 const Home = () => {
   console.log(colors.white);
   // const whiteColor = `text-[${colors.white}]`;
@@ -32,9 +35,17 @@ const Home = () => {
         {/* Categories container */}
         <View className="space-y-2 mt-2">
           {/* Category types */}
-          <FoodCategory />
+
+          <View>
+            <FoodCategoryList />
+          </View>
+          <View>
+            <CategoryItemList />
+          </View>
+
           {/* Category Items */}
-          <View className="bg-white w-[233px] h-[308px] rounded-[15px]">
+
+          {/* <View className="bg-white w-[233px] h-[308px] rounded-[15px]">
             <View className="mx-auto my-auto w-[208px]">
               <View>
                 <Image
@@ -56,7 +67,7 @@ const Home = () => {
                 </View>
               </View>
             </View>
-          </View>
+          </View> */}
         </View>
         {/* Trending Container */}
         <View className="mt-2 space-y-1">
@@ -67,82 +78,10 @@ const Home = () => {
             </Text>
           </View>
           {/* Recipe Item */}
-          <View className="bg-white rounded-[15px] w-full h-[132px] px-3">
-            {/* Inner Container */}
-            <View className="flex flex-row justify-between items-start space-x-2  my-auto">
-              {/* Image container */}
-              <View>
-                <Image
-                  className="h-[107px] w-[131px] rounded-[15px]"
-                  source={{
-                    uri: 'https://assets.tmecosys.com/image/upload/t_web767x639/img/recipe/ras/Assets/18504403-5A16-4310-9ED8-96CB4901D7B3/Derivates/d4819e58-85fc-4d8a-9a56-326c729dffd2.jpg',
-                  }}
-                />
-              </View>
-              {/* Info container */}
-              <View className="flex flex-col justify-between items-end h-[107px] ">
-                <View className="flex flex-col justify-between">
-                  <Text className="text-[19px] font-medium text-wrap text-balance">
-                    Chickpea Noodl...
-                  </Text>
-                  {/* Star container */}
-                  <View className="flex flex-row items-center">
-                    <AntDesign name="star" size={15} color={colors.yellow} />
-                    <AntDesign name="star" size={15} color={colors.yellow} />
-                    <AntDesign name="star" size={15} color={colors.yellow} />
-                    <AntDesign name="star" size={15} color={colors.yellow} />
-                    <AntDesign name="star" size={15} color={colors.yellow} />
-                    <Text className="text-[13px] font-normal ">
-                      (4.9) | 128 view
-                    </Text>
-                  </View>
-                </View>
-                {/* Button container */}
-                <View className="flex flex-row items-center justify-end space-x-2">
-                  <AntDesign name="hearto" size={16} color="black" />
-                  <FontAwesome name="share" size={16} color="black" />
-                </View>
-              </View>
-            </View>
+          <View>
+            <RecipeItemList />
           </View>
-          <View className="bg-white rounded-[15px] w-full h-[132px] px-3">
-            {/* Inner Container */}
-            <View className="flex flex-row justify-between items-start space-x-2  my-auto">
-              {/* Image container */}
-              <View>
-                <Image
-                  className="h-[107px] w-[131px] rounded-[15px]"
-                  source={{
-                    uri: 'https://assets.tmecosys.com/image/upload/t_web767x639/img/recipe/ras/Assets/18504403-5A16-4310-9ED8-96CB4901D7B3/Derivates/d4819e58-85fc-4d8a-9a56-326c729dffd2.jpg',
-                  }}
-                />
-              </View>
-              {/* Info container */}
-              <View className="flex flex-col justify-between items-end h-[107px] ">
-                <View className="flex flex-col justify-between">
-                  <Text className="text-[19px] font-medium text-wrap text-balance">
-                    Chickpea Noodl...
-                  </Text>
-                  {/* Star container */}
-                  <View className="flex flex-row items-center">
-                    <AntDesign name="star" size={15} color={colors.yellow} />
-                    <AntDesign name="star" size={15} color={colors.yellow} />
-                    <AntDesign name="star" size={15} color={colors.yellow} />
-                    <AntDesign name="star" size={15} color={colors.yellow} />
-                    <AntDesign name="star" size={15} color={colors.yellow} />
-                    <Text className="text-[13px] font-normal ">
-                      (4.9) | 128 view
-                    </Text>
-                  </View>
-                </View>
-                {/* Button container */}
-                <View className="flex flex-row items-center justify-end space-x-2">
-                  <AntDesign name="hearto" size={16} color="black" />
-                  <FontAwesome name="share" size={16} color="black" />
-                </View>
-              </View>
-            </View>
-          </View>
+
         </View>
       </ScrollView>
     </SafeAreaView>
