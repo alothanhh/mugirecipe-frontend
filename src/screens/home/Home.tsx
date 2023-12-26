@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo, FC } from 'react';
 import colors from '@/constants/colors';
 import {
   View,
@@ -8,19 +8,37 @@ import {
   StyleSheet,
   TextInput,
   Image,
+  Pressable,
 } from 'react-native';
+
+// Icons
 import { AntDesign } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
+// Components
 import FoodCategoryList from '@/components/categories/FoodCategoryList';
 import CategoryItemList from '@/components/categories/CategoryItemList';
 import RecipeItemList from '@/components/recipes/RecipeItemList';
-const Home = () => {
+import SearchBar from '@/components/common/SearchBar';
+
+// Types
+import { HomeScreens } from '.';
+
+// APIs
+import {fetchRecipeItems} from "../../apis/recipes/index";
+import {useQuery} from "@tanstack/react-query";
+
+type HomeProps = {
+  navigation: any;
+};
+const Home: FC<HomeProps> = memo(({ navigation }) => {
   console.log(colors.white);
   // const whiteColor = `text-[${colors.white}]`;
   // const primaryColor = `text-[${colors.primary}]`;
   // console.log(whiteColor);
+  // console.log(typeof navigation);
+
   return (
     <SafeAreaView style={styles.rootContainer}>
       {/* Inner container */}
@@ -28,10 +46,7 @@ const Home = () => {
         showsVerticalScrollIndicator={false}
         className="w-[90%] mx-auto"
       >
-        <View className="flex flex-row items-center justify-start space-x-1 px-4 bg-white h-[50px] rounded-[30px] ">
-          <FontAwesome name="search" size={20} color={colors.placeholder} />
-          <TextInput placeholder="Find your favorite meals" />
-        </View>
+        <SearchBar />
         {/* Categories container */}
         <View className="space-y-2 mt-2">
           {/* Category types */}
@@ -73,20 +88,23 @@ const Home = () => {
         <View className="mt-2 space-y-1">
           <View className="flex flex-row items-center justify-between">
             <Text className="text-[22px] font-semibold">Treding Recipes</Text>
-            <Text className="font-light text-[18px] text-[#B73E3E]">
-              See all
-            </Text>
+            <Pressable
+              onPress={() => navigation.navigate(HomeScreens.TRENDING)}
+            >
+              <Text className="font-light text-[18px] text-[#B73E3E]">
+                See all
+              </Text>
+            </Pressable>
           </View>
           {/* Recipe Item */}
           <View>
             <RecipeItemList />
           </View>
-
         </View>
       </ScrollView>
     </SafeAreaView>
   );
-};
+});
 
 const styles = StyleSheet.create({
   rootContainer: {
