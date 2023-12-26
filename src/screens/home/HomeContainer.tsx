@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Home from './Home';
 import { HomeScreens } from './index';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { HeaderStyles } from '@/styles/globalStyles';
 export type HomeStackParamList = {
   [HomeScreens.HOME]: undefined;
 };
@@ -23,6 +24,7 @@ const HomeContainer = () => {
               color="black"
             />
           ),
+          ...HeaderStyles,
         }}
       />
     </Stack.Navigator>

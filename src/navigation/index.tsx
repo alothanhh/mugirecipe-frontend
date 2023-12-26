@@ -4,7 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { RootScreens } from '../screens';
 import MainScreen from './Main';
-
+import colors from '@/constants/colors';
 export type RootStackParamList = {
   [RootScreens.MAIN]: undefined;
   [RootScreens.ONBOARDING]: undefined;
@@ -16,7 +16,7 @@ const NativeStack = createNativeStackNavigator<RootStackParamList>();
 const ApplicationNavigator = () => {
   return (
     <NavigationContainer>
-      <StatusBar backgroundColor="white" style="dark" />
+      <StatusBar backgroundColor={colors.background} style="dark" />
       <NativeStack.Navigator screenOptions={{
         headerShown: false
       }}>
