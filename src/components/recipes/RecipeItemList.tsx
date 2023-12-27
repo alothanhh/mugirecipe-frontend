@@ -2,7 +2,7 @@ import React, { memo, FC } from 'react';
 import { View, SafeAreaView, FlatList } from 'react-native';
 import { recipeData } from './data';
 import RecipeItem from './RecipeItem';
-
+import VerticalListItemDivider from '../common/VerticalListItemDivider';
 import { useQuery } from '@tanstack/react-query';
 import { fetchRecipeItems } from '@/apis/recipes';
 
@@ -32,7 +32,7 @@ const RecipeItemList = memo(() => {
         scrollEnabled={false} // remove duplicate scroll logic, because wrapper is scrollviiew
         renderItem={renderRecipeItem}
         keyExtractor={(item: any) => item}
-        ItemSeparatorComponent={() => <View className="mb-2" />}
+        ItemSeparatorComponent={() => <VerticalListItemDivider />}
       />
     </SafeAreaView>
   );
