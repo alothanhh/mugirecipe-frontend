@@ -11,9 +11,9 @@ const RecipeItemList = memo(() => {
     queryKey: ['recipes'],
     queryFn: fetchRecipeItems,
   });
-  if (data) {
-    console.log(data);
-  }
+  // if (data) {
+  //   console.log(data);
+  // }
   const renderRecipeItem: FC<{ item: any }> = ({ item }) => {
     return (
       <RecipeItem
