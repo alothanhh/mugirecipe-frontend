@@ -1,24 +1,22 @@
-import React from "react";
-import { SafeAreaView, View, Text, StyleSheet, ScrollView } from "react-native";
-import colors from "@/constants/colors";
-import RecipeItemList from "@/components/recipes/RecipeItemList";
-import SearchBar from "@/components/common/SearchBar";
+import React from 'react';
+import { SafeAreaView, View, StyleSheet } from 'react-native';
+import colors from '@/constants/colors';
+import RecipeItemList from '@/components/recipes/RecipeItemList';
+import SearchBar from '@/components/common/SearchBar';
+import ScreenWrapper from '@/components/common/ScreenWrapper';
 const Trending = () => {
   return (
     <SafeAreaView style={styles.rootContainer}>
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        className="w-[90%] mx-auto"
-      >
+      <ScreenWrapper>
         <SearchBar />
         <View className="mt-2">
           <RecipeItemList />
           {/* <RecipeItemList /> */}
         </View>
-      </ScrollView>
+      </ScreenWrapper>
     </SafeAreaView>
   );
-}
+};
 
 const styles = StyleSheet.create({
   rootContainer: {

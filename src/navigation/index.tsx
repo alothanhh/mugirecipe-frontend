@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { RootScreens } from '../screens';
 import MainScreen from './Main';
+import AuthenticationScreen from './Authentication';
 import colors from '@/constants/colors';
 export type RootStackParamList = {
   [RootScreens.MAIN]: undefined;
@@ -17,12 +18,18 @@ const ApplicationNavigator = () => {
   return (
     <NavigationContainer>
       <StatusBar backgroundColor={colors.background} style="dark" />
-      <NativeStack.Navigator screenOptions={{
-        headerShown: false
-      }}>
+      <NativeStack.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}
+        initialRouteName={RootScreens.AUTHENTICATION}
+      >
+        <NativeStack.Screen
+          name={RootScreens.AUTHENTICATION}
+          component={AuthenticationScreen}
+        />
         {/* <NativeStack.Screen name={RootScreens.ONBOARDING} /> */}
-        <NativeStack.Screen name={RootScreens.MAIN} component={MainScreen}/>
-        {/* <NativeStack.Screen name={RootScreens.AUTHENTICATION} /> */}
+        <NativeStack.Screen name={RootScreens.MAIN} component={MainScreen} />
       </NativeStack.Navigator>
     </NavigationContainer>
   );
