@@ -24,7 +24,7 @@ import SearchBar from '@/components/common/SearchBar';
 
 // Types
 import { HomeScreens } from '.';
-
+import ScreenWrapper from '@/components/common/ScreenWrapper';
 // APIs
 import {fetchRecipeItems} from "../../apis/recipes/index";
 import {useQuery} from "@tanstack/react-query";
@@ -41,9 +41,7 @@ const Home: FC<HomeProps> = memo(({ navigation }) => {
   return (
     <SafeAreaView style={styles.rootContainer}>
       {/* Inner container */}
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        className="w-[90%] mx-auto"
+      <ScreenWrapper
       >
         <SearchBar />
         {/* Categories container */}
@@ -74,7 +72,7 @@ const Home: FC<HomeProps> = memo(({ navigation }) => {
             <RecipeItemList />
           </View>
         </View>
-      </ScrollView>
+      </ScreenWrapper>
     </SafeAreaView>
   );
 });

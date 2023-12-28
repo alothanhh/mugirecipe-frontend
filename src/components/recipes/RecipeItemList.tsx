@@ -31,7 +31,7 @@ const RecipeItemList = memo(() => {
         data={data}
         scrollEnabled={false} // remove duplicate scroll logic, because wrapper is scrollviiew
         renderItem={renderRecipeItem}
-        keyExtractor={(item: any) => item}
+        keyExtractor={(item: any) => item._id}
         ItemSeparatorComponent={() => <VerticalListItemDivider />}
       />
     </SafeAreaView>
