@@ -9,8 +9,8 @@
     "icon": "./assets/images/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/images/splash.png",
-      "resizeMode": "contain",
+      "image": "./assets/images/mugi_icon.png",
+      "resizeMode": "resize",
       "backgroundColor": "#ffffff"
     },
     "updates": {
