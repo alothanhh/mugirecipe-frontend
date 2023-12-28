@@ -7,7 +7,7 @@ import FavoriteContainer from '@/screens/favorite/FavoriteContainer';
 import ProfileContainer from '@/screens/profile/ProfileContainer';
 import SettingsContainer from '@/screens/settings/SettingsContainer';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import AntDesign from '@expo/vector-icons/AntDesign';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Feather } from '@expo/vector-icons';
 import colors from '@/constants/colors';
 import ScanningContainer from '@/screens/scanning/ScanningContainer';
@@ -54,7 +54,7 @@ const Main = () => {
               return <Ionicons name="heart-outline" size={24} color={color} />;
             case 'ProfileTab':
               return (
-                <AntDesign name="questioncircleo" size={24} color={color} />
+                <MaterialCommunityIcons name="account-supervisor-circle-outline" size={25} color={color} />
               );
             case 'ScanningTab':
               return <Feather name="camera" size={24} color="#FFFFFF" />;
