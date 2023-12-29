@@ -15,11 +15,23 @@ const Stack = createNativeStackNavigator<ProfileStackParamList>();
 
 const ProfileContainer = () => {
   return (
-      <Stack.Navigator>
-        <Stack.Screen name={ProfileScreens.PROFILE} component={Profile} options={{ headerShown: false }}/>
-        <Stack.Screen name={ProfileScreens.EDIT_PROFILE} component={EditProfile} options={{ headerShown: false }} />
-        <Stack.Screen name={ProfileScreens.CHANGE_PASSWORD} component={ChangePassword} options={{ headerShown: false }} />
-      </Stack.Navigator>
+    <Stack.Navigator>
+      <Stack.Screen
+        name={ProfileScreens.PROFILE}
+        component={Profile}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name={ProfileScreens.EDIT_PROFILE}
+        component={EditProfile}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name={ProfileScreens.CHANGE_PASSWORD}
+        component={ChangePassword}
+        options={{ headerShown: false }}
+      />
+    </Stack.Navigator>
   );
 };
 
