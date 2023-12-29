@@ -15,10 +15,7 @@ const FavoriteContainer = () => {
       <Stack.Screen
         name={FavoriteScreens.FAVORITE}
         component={FavoriteScreen}
-        options={{
-          headerTitle: 'Favorite Recipes',
-          ...HeaderStyles,
-        }}
+        options={{ headerShown: false }}
       />
     </Stack.Navigator>
   );

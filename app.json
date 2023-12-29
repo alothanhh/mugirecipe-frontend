@@ -52,9 +52,6 @@
       "policy": "sdkVersion"
     },
     "extra": {
-      "eas": {
-        "projectId": "72ba590a-e7fa-4071-8ed3-426c83de08f2"
-      }
     }
   }
 }
