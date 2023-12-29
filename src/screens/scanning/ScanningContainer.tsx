@@ -15,9 +15,7 @@ const ScanningContainer = () => {
       <Stack.Screen
         name={ScanningScreens.SCANNING}
         component={Profile}
-        options={{
-          headerTitle: 'Recipes Scanning',
-        }}
+        options={{ headerShown: false,}}
       />
     </Stack.Navigator>
   );

@@ -10,7 +10,7 @@
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/images/mugi_icon.png",
-      "resizeMode": "resize",
+      "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
     "updates": {
@@ -22,23 +22,39 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.hpcc.expo-redux-template"
+      "bundleIdentifier": "com.hpcc.expo-redux-template",
+      "infoPlist": {
+        "NSCameraUsageDescription": "Apps needs access to your Camera."
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.hpcc.expo_redux_template"
+      "package": "com.hpcc.expo_redux_template",
+      "permissions": [
+        "android.permission.CAMERA"
+      ]
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
     },
-    "plugins": [],
+    "plugins": [
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow $(PRODUCT_NAME) to access your camera."
+        }
+      ]
+    ],
     "runtimeVersion": {
       "policy": "sdkVersion"
     },
     "extra": {
+      "eas": {
+        "projectId": "72ba590a-e7fa-4071-8ed3-426c83de08f2"
+      }
     }
   }
 }
