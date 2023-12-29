@@ -1,12 +1,19 @@
 import { Camera, CameraType } from 'expo-camera';
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, memo, FC } from 'react';
 import { Button, StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
 import colors from '@/constants/colors';
 
-const Scanning = () => {
+import { MaterialIcons } from '@expo/vector-icons';
+import { ScanningScreens } from '.';
+
+export type ScanningProps = {
+  navigation: any;
+};
+
+const Scanning: FC<ScanningProps> = memo(({ navigation }) => {
   const [type, setType] = useState(CameraType.back);
   const [permission, requestPermission] = Camera.useCameraPermissions();
-  // const [uri, setUri] = useState();
+  // const [preview, setPreview] = useState();
 
   const ref = useRef(null)
 
@@ -32,8 +39,11 @@ const Scanning = () => {
   const _takePhoto = async () => {
     if (ref.current) {
       const photo = await (ref.current as any).takePictureAsync();
-      console.log(photo)
+      // console.log(photo)
       // setUri(photo.uri);
+      navigation.navigate(ScanningScreens.PREVIEW, {
+        data: photo.uri
+      })
     } else {
       console.error('Ref is null.');
     }
@@ -43,16 +53,21 @@ const Scanning = () => {
     <View style={styles.container}>
       <Camera style={styles.camera} type={type} ref={ref}>
         <View style={styles.buttonContainer}>
-          <TouchableOpacity style={styles.button} onPress={toggleCameraType}>
-            <Text style={styles.text}>Flip Camera</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={_takePhoto}
-          >
-            <Text style={styles.text}>Snap Photo</Text>
-          </TouchableOpacity>
+          <View style={styles.listButton}>
+            <TouchableOpacity style={styles.button} onPress={toggleCameraType}>
+              <MaterialIcons name="flip-camera-android" size={24} color="white" />
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button}>
+              <MaterialIcons name="add-photo-alternate" size={24} color="white" />
+            </TouchableOpacity>
+          </View>
         </View>
+        <TouchableOpacity
+          style={styles.snapphoto}
+          onPress={_takePhoto}
+        >
+          <Text style={styles.text}>Snap Photo</Text>
+        </TouchableOpacity>
       </Camera>
       {/* Preview Image */}
       {/* <Image
@@ -63,7 +78,7 @@ const Scanning = () => {
       /> */}
     </View>
   );
-};
+});
 
 
 const styles = StyleSheet.create({
@@ -76,18 +91,36 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flex: 1,
-    flexDirection: 'row',
+    flexDirection: 'row-reverse',
     backgroundColor: 'transparent',
-    margin: 64,
+    // alignContent: 'center',
+    marginTop: 200,
+    // marginBottom: 64,
+    marginLeft: 15,
+    marginRight: 15,
+  },
+  listButton: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignSelf: 'flex-start',
+    // backgroundColor: 'red'
+  },
+  snapphoto: {
+    alignSelf: 'center',
+    alignItems: 'center',
+    backgroundColor: colors.lightred,
+    marginBottom: 70,
+    padding: 15,
+    borderRadius: 20,
+    textAlign: 'center',
   },
   button: {
-    flex: 1,
-    alignSelf: 'flex-end',
+    alignSelf: 'flex-start',
     alignItems: 'center',
     backgroundColor: colors.lightred,
     margin: 5,
     padding: 15,
-    borderRadius: 20,
+    borderRadius: 30,
     textAlign: 'center',
   },
   text: {

@@ -1,3 +1,5 @@
 export enum ScanningScreens  {
-  SCANNING = "Scanning"
+  SCANNING = "Scanning",
+  PREVIEW = "Preview",
+  RESULT = "Result"
 };
