@@ -1,11 +1,22 @@
 import React from 'react';
-import { View, Text } from 'react-native';
-
+import { View, Text, SafeAreaView } from 'react-native';
+import SearchBar from '@/components/common/SearchBar';
+import ScreenWrapper from '@/components/common/ScreenWrapper';
+import FavoriteItemList from './components/FavoriteItemList';
 const Favorite = () => {
   return (
-    <View>
-      <Text>Favorite screen!</Text>
-    </View>
+    <SafeAreaView>
+      <ScreenWrapper>
+        <View className="space-y-2">
+          <View>
+            <SearchBar />
+          </View>
+          <View>
+            <FavoriteItemList />
+          </View>
+        </View>
+      </ScreenWrapper>
+    </SafeAreaView>
   );
 };
 
