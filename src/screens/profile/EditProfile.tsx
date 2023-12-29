@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, Button, TouchableOpacity, Image, TextInput, SafeAreaView } from 'react-native';
 import colors from '@/constants/colors';
 
+
 const EditProfile = () => {
   const [name, onChangeName] = React.useState('Tran Duc Tuan');
   const [email, onChangeEmail] = React.useState('tranductuan@gmail.com');
@@ -9,7 +10,7 @@ const EditProfile = () => {
   const [description, onChangeDescription] = React.useState('I am a com-sci student with a strong passion for cooking');
 
   return (
-    <View style={{ margin: 25 }}>
+    <View style={{ margin: 25,  marginTop: 50 }}>
       <Text style={styles.titleText}>
         Edit Profile
         {'\n'}
@@ -19,23 +20,27 @@ const EditProfile = () => {
           source={require('../../../assets/images/avatar.jpg')}
           style={{ width: 120, height: 120, borderRadius: 100 }}
         />
-        <SafeAreaView style={{ marginTop: 25 }}>
+        <SafeAreaView style={{ marginTop: 15 }}>
+          <Text style={styles.label}>Name</Text>
           <TextInput
             style={styles.input}
             onChangeText={onChangeName}
             value={name}
           />
+          <Text style={styles.label}>Email</Text>
           <TextInput
             style={styles.input}
             onChangeText={onChangeEmail}
             value={email}
           />
+          <Text style={styles.label}>Phone Number</Text>
           <TextInput
             style={styles.input}
             onChangeText={onChangePhone}
             value={phone}
             keyboardType="numeric"
           />
+          <Text style={styles.label}>Description</Text>
           <TextInput
             multiline
             style={[styles.input, { height: 100 }]}
@@ -95,7 +100,7 @@ const styles = StyleSheet.create({
   input: {
     height: 50,
     width: 350,
-    marginTop: 15,
+    // marginTop: 15,
     fontSize: 18,
     fontWeight: '500',
     // borderWidth: 1,
@@ -103,6 +108,12 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 15,
   },
+  label: {
+    color: colors.darkgray,
+    paddingLeft: 15,
+    marginBottom: 5,
+    marginTop: 10
+  }
 });
 
 export default EditProfile;

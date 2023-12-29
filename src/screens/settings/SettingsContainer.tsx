@@ -13,7 +13,7 @@ const SettingsContainer = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen name={SettingsScreens.SETTINGS} component={Settings} options={{
-        headerTitle: "Settings"
+        headerShown: false
       }} />
     </Stack.Navigator>
   );

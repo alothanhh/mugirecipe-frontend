@@ -3,14 +3,14 @@ import { StyleSheet, Text, View, Button, TouchableOpacity, Image } from 'react-n
 import colors from '@/constants/colors';
 //Navigation import
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+// import { createStackNavigator } from '@react-navigation/stack';
 
 const Profile = (props: any) => {
 
   return (
-    <View style={{ margin: 25 }}>
+    <View style={{ margin: 25, marginTop: 50 }}>
       <Text style={styles.titleText}>
-        My Profilee
+        My Profile
         {'\n'}
       </Text>
       <Text style={styles.subTitleText}>Personal Detail</Text>
@@ -66,20 +66,24 @@ const Profile = (props: any) => {
           }}>Edit</Text>
         </TouchableOpacity>
       </View>
-      <View style={{
-        backgroundColor: colors.white,
-        padding: 20,
-        borderRadius: 30,
-        marginTop: 20,
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        display: 'flex',
-        flexDirection: 'row'
-      }}>
+      <TouchableOpacity onPress={() =>
+        props.navigation.navigate('ChangePassword')
+      }
+        style={{
+          backgroundColor: colors.white,
+          padding: 20,
+          borderRadius: 30,
+          marginTop: 20,
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          display: 'flex',
+          flexDirection: 'row'
+          
+        }}>
         <Text style={[styles.subTitleText, {}]}>Change Password</Text>
         <Image source={{ uri: 'https://img.icons8.com/ios/50/more-than.png' }}
           style={{ width: 30, height: 30 }} />
-      </View>
+      </TouchableOpacity>
     </View>
   );
 };
