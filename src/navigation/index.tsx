@@ -23,7 +23,7 @@ const ApplicationNavigator = () => {
         screenOptions={{
           headerShown: false,
         }}
-        initialRouteName={RootScreens.ONBOARDING}
+        initialRouteName={RootScreens.MAIN}
       >
         <NativeStack.Screen
           name={RootScreens.ONBOARDING}

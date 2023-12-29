@@ -46,21 +46,58 @@ const Main = () => {
     <Tab.Navigator
       initialRouteName="HomeTab"
       screenOptions={({ route }) => ({
-        tabBarIcon: ({ color, size }) => {
+        tabBarIcon: ({ focused, color, size }) => {
           switch (route.name) {
             case 'HomeTab':
-              return <Ionicons name="home-outline" size={24} color={color} />;
+              return (
+                <View
+                  className={`${
+                    focused &&
+                    'flex items-center justify-center bg-[#F2F2F2] rounded-full h-[37.5px] w-[37.5px]'
+                  }`}
+                >
+                  <Ionicons name="home-outline" size={24} color={color} />
+                </View>
+              );
             case 'FavoriteTab':
-              return <Ionicons name="heart-outline" size={24} color={color} />;
+              return (
+                <View
+                  className={`${
+                    focused &&
+                    'flex items-center justify-center bg-[#F2F2F2] rounded-full h-[37.5px] w-[37.5px]'
+                  }`}
+                >
+                  <Ionicons name="heart-outline" size={24} color={color} />
+                </View>
+              );
             case 'ProfileTab':
               return (
-                <AntDesign name="questioncircleo" size={24} color={color} />
+                <View
+                  className={`${
+                    focused &&
+                    'flex items-center justify-center bg-[#F2F2F2] rounded-full h-[37.5px] w-[37.5px]'
+                  }`}
+                >
+                  <AntDesign name="questioncircleo" size={24} color={color} />
+                </View>
               );
+
             case 'ScanningTab':
               return <Feather name="camera" size={24} color="#FFFFFF" />;
             case 'SettingsTab':
               return (
-                <Ionicons name="ios-settings-outline" size={24} color={color} />
+                <View
+                  className={`${
+                    focused &&
+                    'flex items-center justify-center bg-[#F2F2F2] rounded-full h-[37.5px] w-[37.5px]'
+                  }`}
+                >
+                  <Ionicons
+                    name="ios-settings-outline"
+                    size={24}
+                    color={color}
+                  />
+                </View>
               );
           }
         },
@@ -72,6 +109,7 @@ const Main = () => {
         tabBarShowLabel: false,
         tabBarInactiveTintColor: colors.darkgray,
         tabBarActiveTintColor: colors.lightred,
+        // tabBarActiveBackgroundColor: '#ccc',
         tabBarHideOnKeyboard: true,
         tabBarVisibilityAnimationConfig: {},
         tabBarStyle: {

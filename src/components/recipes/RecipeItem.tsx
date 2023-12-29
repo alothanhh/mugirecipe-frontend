@@ -1,4 +1,4 @@
-import React, { FC, memo } from 'react';
+import React, { FC, memo, useState } from 'react';
 import { TouchableOpacity, View, Text, Image } from 'react-native';
 import colors from '@/constants/colors';
 import { AntDesign } from '@expo/vector-icons';
@@ -8,10 +8,15 @@ export type RecipeItemProps = {
   name: string;
   numOfRating: number;
   numOfView: number;
+  isFavorite?: boolean;
 };
 
 const RecipeItem: FC<RecipeItemProps> = memo(
-  ({ image, name, numOfRating, numOfView }) => {
+  ({ image, name, numOfRating, numOfView, isFavorite }) => {
+    const [isFavoriteItem, setIsFavoriteItem] = useState(isFavorite);
+    const toggleFavoriteItemHandler = () => {
+      setIsFavoriteItem((prev) => !prev);
+    };
     return (
       <TouchableOpacity className="bg-white rounded-[15px] w-full h-[132px] px-3">
         {/* Inner Container */}
@@ -45,7 +50,11 @@ const RecipeItem: FC<RecipeItemProps> = memo(
             </View>
             {/* Button container */}
             <View className="flex flex-row items-center justify-end space-x-2">
-              <AntDesign name="hearto" size={16} color="black" />
+              {isFavoriteItem ? (
+                <AntDesign name="heart" size={16} color={colors.primary} onPress={toggleFavoriteItemHandler} />
+              ) : (
+                <AntDesign name="hearto" size={16} color="black" onPress={toggleFavoriteItemHandler} />
+              )}
               <FontAwesome name="share" size={16} color="black" />
             </View>
           </View>
