@@ -26,7 +26,7 @@ const AuthenticationContainer = () => {
           ...HeaderStyles,
           headerTitle: '',
           headerLeft: () => (
-            <Arrow/>
+            <Arrow onPress={() => navigation.goBack()}/>
           ),
         }}
       />
