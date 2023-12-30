@@ -28,7 +28,7 @@ const SearchedRecipeItemList: FC<SearchedRecipeItemListProps> = memo(
         />
       );
     };
-    console.log(`search data = `, data);
+    // console.log(`search data = `, data);
     
     return (
       <SafeAreaView>
