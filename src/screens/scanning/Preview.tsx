@@ -1,6 +1,6 @@
 import { Camera, CameraType } from 'expo-camera';
 import React, { useState, useEffect, useRef, memo, FC } from 'react';
-import { Button, StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
+import { Button, StyleSheet, Text, TouchableOpacity, View, Image, ActivityIndicator } from 'react-native';
 import colors from '@/constants/colors';
 
 import { MaterialIcons } from '@expo/vector-icons';
@@ -24,23 +24,77 @@ const Preview: FC<PreviewProps> = memo(({ navigation }) => {
 
     const { data } = route.params;
 
-    console.log(data);
+    ///////////////////////////////////////////////////////////////////////////////////////////////////
+    // In this section, we set the user authentication, user and app ID, model details, and the URL
+    // of the image we want as an input. Change these strings to run your own example.
+    //////////////////////////////////////////////////////////////////////////////////////////////////
+
+    // Your PAT (Personal Access Token) can be found in the portal under Authentification
+    const PAT = '9f173c8077074ad78adc896d9dddc268';
+    // Specify the correct user_id/app_id pairings
+    // Since you're making inferences outside your app's scope
+    const USER_ID = 'clarifai';
+    const APP_ID = 'main';
+    // Change these to whatever model and image URL you want to use
+    const MODEL_ID = 'food-item-recognition';
+    const MODEL_VERSION_ID = '1d5fd481e0cf4826aa72ec3ff049e044';
+    const IMAGE_URL = 'https://www.thitbosi.com/uploads/files/2023/10/26/thumbs-1024-768-0/SP002120-PD02434-WEB_Loi-Vai-Bo-My-Steak-TP.png';
+
+    ///////////////////////////////////////////////////////////////////////////////////
+    // YOU DO NOT NEED TO CHANGE ANYTHING BELOW THIS LINE TO RUN THIS EXAMPLE
+    ///////////////////////////////////////////////////////////////////////////////////
+
+    const raw = JSON.stringify({
+        "user_app_id": {
+            "user_id": USER_ID,
+            "app_id": APP_ID
+        },
+        "inputs": [
+            {
+                "data": {
+                    "image": {
+                        "base64": data
+                    }
+                }
+            }
+        ]
+    });
+
+    const requestOptions = {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Authorization': 'Key ' + PAT
+        },
+        body: raw
+    };
+
+    // NOTE: MODEL_VERSION_ID is optional, you can also call prediction with the MODEL_ID only
+    // https://api.clarifai.com/v2/models/{YOUR_MODEL_ID}/outputs
+    // this will default to the latest version_id
+
+    const [result, setResult] = useState('')
+
+    fetch("https://api.clarifai.com/v2/models/" + MODEL_ID + "/versions/" + MODEL_VERSION_ID + "/outputs", requestOptions)
+        .then(response => response.json())
+        .then(result => {
+            setResult(result.outputs[0].data.concepts[0].name);
+        })
+        .catch(error => console.log('error', error));
 
     return (
         <View style={styles.container}>
             <Text style={[styles.subTitleText, { marginBottom: 10 }]}>
                 Your detected ingredient
             </Text>
-            <Text style={[styles.titleText, { marginBottom: 10 }]}>
-                Chicken
-            </Text>
+            {result === '' ? <ActivityIndicator size="large" style={{marginBottom: 10}} /> :
+                <Text style={[styles.titleText, { marginBottom: 10 }]}>
+                    {result}
+                </Text>}
             {/* Preview Image */}
             <Image
-                // className="w-[208px] h-[204px] rounded-[15px]"
                 style={styles.preview}
-                source={{
-                    uri: data
-                }}
+                source={{ uri: `data:image/jpeg;base64,${data}` }}
             />
             <View style={{ display: 'flex', justifyContent: 'space-between', flexDirection: 'row', width: '100%', paddingLeft: 30, paddingRight: 30 }}>
                 <TouchableOpacity
@@ -77,20 +131,15 @@ const Preview: FC<PreviewProps> = memo(({ navigation }) => {
 
 const styles = StyleSheet.create({
     container: {
-        // flex: 1,
-        // backgroundColor: 'pink',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         paddingTop: 60,
         height: '100%'
-        // justifyContent: 'center',
     },
     preview: {
         height: '75%',
-        // objectFit: 'scale-down'
         width: '100%',
-        // borderRadius: 20
     },
     text: {
         fontSize: 18,
@@ -99,7 +148,6 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     titleText: {
-        // fontFamily: 'Poppins-Medium',
         fontSize: 27,
         fontWeight: '600', //bold
     },
@@ -120,7 +168,6 @@ const styles = StyleSheet.create({
         paddingLeft: 25,
         paddingRight: 25,
         marginTop: 20,
-        // marginBottom: 10
     }
 });
 

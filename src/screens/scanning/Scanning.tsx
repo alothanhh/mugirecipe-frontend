@@ -6,6 +6,8 @@ import colors from '@/constants/colors';
 import { MaterialIcons } from '@expo/vector-icons';
 import { ScanningScreens } from '.';
 
+import * as ImagePicker from 'expo-image-picker';
+
 export type ScanningProps = {
   navigation: any;
 };
@@ -16,7 +18,6 @@ const Scanning: FC<ScanningProps> = memo(({ navigation }) => {
   // const [preview, setPreview] = useState();
 
   const ref = useRef(null)
-
   function toggleCameraType() {
     setType(current => (current === CameraType.back ? CameraType.front : CameraType.back));
   }
@@ -36,18 +37,43 @@ const Scanning: FC<ScanningProps> = memo(({ navigation }) => {
     );
   }
 
+  let options = {
+    quality: 1,
+    base64: true,
+    exif: false
+  }
+
   const _takePhoto = async () => {
     if (ref.current) {
-      const photo = await (ref.current as any).takePictureAsync();
+      const photo = await (ref.current as any).takePictureAsync(options);
       // console.log(photo)
       // setUri(photo.uri);
       navigation.navigate(ScanningScreens.PREVIEW, {
-        data: photo.uri
+        data: photo.base64
       })
     } else {
       console.error('Ref is null.');
     }
   }
+
+  const pickImage = async () => {
+    // No permissions request is necessary for launching the image library
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+      base64: true,
+    });
+    
+    console.log(result);
+
+    if (!result.canceled) {
+      navigation.navigate(ScanningScreens.PREVIEW, {
+        data: result.assets[0].base64
+      });
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -57,7 +83,7 @@ const Scanning: FC<ScanningProps> = memo(({ navigation }) => {
             <TouchableOpacity style={styles.button} onPress={toggleCameraType}>
               <MaterialIcons name="flip-camera-android" size={24} color="white" />
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity style={styles.button} onPress={pickImage}>
               <MaterialIcons name="add-photo-alternate" size={24} color="white" />
             </TouchableOpacity>
           </View>
@@ -70,12 +96,6 @@ const Scanning: FC<ScanningProps> = memo(({ navigation }) => {
         </TouchableOpacity>
       </Camera>
       {/* Preview Image */}
-      {/* <Image
-        className="w-[208px] h-[204px] rounded-[15px]"
-        source={{
-          uri: uri
-        }}
-      /> */}
     </View>
   );
 });
