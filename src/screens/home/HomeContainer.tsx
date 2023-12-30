@@ -11,6 +11,8 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { HeaderStyles } from '@/styles/globalStyles';
 // Types
 import { HomeScreens } from './index';
+import Arrow from '../../../assets/images/common/Arrow';
+
 export type HomeStackParamList = {
   [HomeScreens.HOME]: undefined;
   [HomeScreens.TRENDING]: undefined;
@@ -44,6 +46,7 @@ const HomeContainer = () => {
         component={TrendingScreen}
         options={{
           ...HeaderStyles,
+          headerLeft: () => <Arrow onPress={() => navigation.goBack()} />,
         }}
       />
       <Stack.Screen
@@ -51,6 +54,7 @@ const HomeContainer = () => {
         component={NotificationScreen}
         options={{
           ...HeaderStyles,
+          headerLeft: () => <Arrow onPress={() => navigation.goBack()} />,
         }}
       />
       <Stack.Screen
@@ -58,7 +62,7 @@ const HomeContainer = () => {
         component={SearchScreen}
         options={{
           ...HeaderStyles,
-          headerTitle: "Search/Scanning results"
+          headerTitle: 'Search/Scanning results',
         }}
       />
     </Stack.Navigator>

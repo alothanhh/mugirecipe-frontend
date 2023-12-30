@@ -1,5 +1,5 @@
 import React, { memo, FC, useState } from 'react';
-import { FlatList, View } from 'react-native';
+import { FlatList, View, RefreshControl } from 'react-native';
 import { categoryItemData } from './data';
 import CategoryItem from './CategoryItem';
 import HorizontalListItemDivider from '../common/HorizontalListItemDivider';
@@ -7,16 +7,18 @@ import { useQuery } from '@tanstack/react-query';
 import { fetchCategorizedItems } from '@/apis/categories';
 
 export type CategoryItemListProps = {
-  categoryId: string;
+  data: any;
 };
 
-const CategoryItemList: FC<CategoryItemListProps> = memo(({ categoryId }) => {
-  // console.log(`CategoryItemList, categoryId = ${categoryId}`);
+const CategoryItemList: FC<CategoryItemListProps> = memo(({ data }) => {
+  const [refreshing, setRefreshing] = React.useState(false);
 
-  const { data, isError, isPending, error } = useQuery({
-    queryKey: ['category'],
-    queryFn: () => fetchCategorizedItems(categoryId),
-  });
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 2000);
+  }, []);
   const renderCategoryItem: FC<{ item: any }> = ({ item }) => {
     return (
       <CategoryItem
