@@ -1,6 +1,6 @@
 import React, { memo, FC } from 'react';
 
-import { Text, Pressable, View } from 'react-native';
+import { Text, Pressable, View, TouchableOpacity } from 'react-native';
 
 export type CustomButtonProps = {
   children: React.ReactNode;
@@ -12,7 +12,7 @@ export type CustomButtonProps = {
 const CustomButton: FC<CustomButtonProps> = memo(
   ({ children, containerStyle, inputStyle, onPress }) => {
     return (
-      <Pressable
+      <TouchableOpacity
         onPress={onPress}
         className={
           'flex justify-center items-center w-[200px] h-[45px] bg-[#8B1A10] rounded-[30px] ' +
@@ -26,7 +26,7 @@ const CustomButton: FC<CustomButtonProps> = memo(
         >
           {children}
         </Text>
-      </Pressable>
+      </TouchableOpacity>
     );
   }
 );
