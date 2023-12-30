@@ -17,17 +17,13 @@ import { FontAwesome } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 // Components
-import FoodCategoryList from '@/components/categories/FoodCategoryList';
-import CategoryItemList from '@/components/categories/CategoryItemList';
+import CategorySection from './components/CategorySection';
 import RecipeItemList from '@/components/recipes/RecipeItemList';
 import SearchBar from '@/components/common/SearchBar';
 
 // Types
 import { HomeScreens } from '.';
 import ScreenWrapper from '@/components/common/ScreenWrapper';
-// APIs
-import {fetchRecipeItems} from "../../apis/recipes/index";
-import {useQuery} from "@tanstack/react-query";
 
 type HomeProps = {
   navigation: any;
@@ -41,19 +37,11 @@ const Home: FC<HomeProps> = memo(({ navigation }) => {
   return (
     <SafeAreaView style={styles.rootContainer}>
       {/* Inner container */}
-      <ScreenWrapper
-      >
-        <SearchBar />
+      <ScreenWrapper>
+        <SearchBar navigation={navigation} />
         {/* Categories container */}
-        <View className="space-y-2 mt-2">
-          {/* Category types */}
-
-          <View>
-            <FoodCategoryList />
-          </View>
-          <View>
-            <CategoryItemList />
-          </View>
+        <View className="mt-2">
+          <CategorySection />
         </View>
         {/* Trending Container */}
         <View className="mt-2 space-y-1">

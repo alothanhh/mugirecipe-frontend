@@ -1,13 +1,27 @@
 import React, { memo, FC, useState } from 'react';
-import { SafeAreaView, FlatList, View } from 'react-native';
+import { FlatList, View } from 'react-native';
 import { categoryTypeData } from './data';
 import FoodCategory from './FoodCategory';
-import { FoodCategoryProps } from './FoodCategory';
-import colors from '@/constants/colors';
-const FoodCategoryList = memo(() => {
-  const [selectedId, setSelectedId] = useState<number>(0);
+
+export type FoodCategoryListProps = {
+  selectedId: string;
+  setSelectedId: any;
+};
+
+const FoodCategoryList: FC<FoodCategoryListProps> = ({
+  selectedId,
+  setSelectedId,
+}) => {
+
+
   const renderFoodCategory = (itemData: any) => {
-    const isTargeted = itemData.item.id === selectedId;
+    const isTargeted = itemData.item.id == selectedId;
+    console.log(
+      `itemData.item.id = ${itemData.item.id}, selectedId = ${selectedId}`
+    );
+    
+    console.log(`isTargeted = ${isTargeted}`);
+
     return (
       <FoodCategory
         {...itemData.item}
@@ -27,6 +41,5 @@ const FoodCategoryList = memo(() => {
       pagingEnabled
     />
   );
-});
-
+};
 export default FoodCategoryList;

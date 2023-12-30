@@ -5,6 +5,7 @@ import { useNavigation } from '@react-navigation/native';
 import HomeScreen from './Home';
 import TrendingScreen from './Trending';
 import NotificationScreen from '../notification/Notification';
+import SearchScreen from '../search/Search';
 // Icons
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { HeaderStyles } from '@/styles/globalStyles';
@@ -14,6 +15,7 @@ export type HomeStackParamList = {
   [HomeScreens.HOME]: undefined;
   [HomeScreens.TRENDING]: undefined;
   [HomeScreens.NOTIFICATION]: undefined;
+  [HomeScreens.SEARCH]: undefined;
 };
 
 const Stack = createNativeStackNavigator<HomeStackParamList>();
@@ -49,6 +51,14 @@ const HomeContainer = () => {
         component={NotificationScreen}
         options={{
           ...HeaderStyles,
+        }}
+      />
+      <Stack.Screen
+        name={HomeScreens.SEARCH}
+        component={SearchScreen}
+        options={{
+          ...HeaderStyles,
+          headerTitle: "Search/Scanning results"
         }}
       />
     </Stack.Navigator>

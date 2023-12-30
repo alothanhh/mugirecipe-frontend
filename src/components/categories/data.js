@@ -3,8 +3,8 @@ import { Entypo } from '@expo/vector-icons';
 import colors from '@/constants/colors';
 export const categoryTypeData = [
   {
-    id: 0,
-    content: 'Traditional food',
+    id: 'Traditional Food',
+    content: 'Traditional Food',
     icon: (
       <MaterialCommunityIcons
         name="food-variant"
@@ -14,7 +14,7 @@ export const categoryTypeData = [
     ),
   },
   {
-    id: 1,
+    id: 'Foreign Cuisine',
     content: 'Foreign Cuisine',
     icon: (
       <MaterialCommunityIcons
@@ -25,8 +25,8 @@ export const categoryTypeData = [
     ),
   },
   {
-    id: 2,
-    content: 'Fast food',
+    id: 'Fast Food',
+    content: 'Fast Food',
     icon: (
       <MaterialCommunityIcons
         name="food-hot-dog"
@@ -36,7 +36,7 @@ export const categoryTypeData = [
     ),
   },
   {
-    id: 3,
+    id: 'Vegetarian',
     content: 'Vegetarian',
     icon: (
       <MaterialCommunityIcons
@@ -47,7 +47,7 @@ export const categoryTypeData = [
     ),
   },
   {
-    id: 4,
+    id: 'Beverage',
     content: 'Beverage',
     icon: <Entypo name="drink" size={24} color={colors.primary} />,
   },

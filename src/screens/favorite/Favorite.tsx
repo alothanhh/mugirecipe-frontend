@@ -17,10 +17,9 @@ const Favorite: FC = memo(() => {
     const getToken = async () => {
       const token = await AsyncStorage.getItem('token');
       setIsAuthenticated(token);
-
     };
     getToken();
-  }, []);
+  }, [AsyncStorage.getItem]);
   // console.log(`token = ${isAuthenticated}`);
   if (!isAuthenticated) {
     return <UnauthorizedOverlay />;
