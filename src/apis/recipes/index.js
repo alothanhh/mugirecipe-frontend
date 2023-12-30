@@ -11,3 +11,17 @@ export const fetchRecipeItems = async () => {
     throw err;
   }
 };
+
+export const searchRecipeItems = async (keyword) => {
+  try {
+    const response = await axios.get(BASE_URL + 'recipe/search', {
+      params: {
+        name: keyword,
+      },
+    });
+    return response.data;
+  } catch (err) {
+    console.log(err);
+    throw err;
+  }
+};

@@ -22,7 +22,7 @@ const CategoryItem: FC<CategoryItemProps> = memo(
           </View>
           <View className="flex flex-col space-y-[15px] mt-[5px]">
             <Text className="text-[19px] font-bold">
-              {content.slice(0, 25) + "..."}
+              {content.slice(0, 16) + "..."}
             </Text>
             <View>
               <Text className="font-semibold">
