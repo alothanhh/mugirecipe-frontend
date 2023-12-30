@@ -32,9 +32,11 @@ const Favorite: FC = memo(() => {
           {'\n'}
         </Text>
         <View className="space-y-4">
-          {/* <View>
-            <SearchBar />
-          </View> */}
+
+          <View>
+            {/* <SearchBar /> */}
+          </View>
+
           <View>
             <FavoriteItemList />
           </View>
