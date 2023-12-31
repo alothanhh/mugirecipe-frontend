@@ -20,6 +20,7 @@ const CategoryItemList: FC<CategoryItemListProps> = memo(({ categoryId }) => {
   const renderCategoryItem: FC<{ item: any }> = ({ item }) => {
     return (
       <CategoryItem
+        id={item._id}
         content={item.name}
         image={item.imagePath}
         lowerPrice={item.price}

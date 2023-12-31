@@ -3,4 +3,6 @@ export enum HomeScreens {
   TRENDING = 'Trending',
   NOTIFICATION = 'Notification',
   SEARCH = 'Search',
+  DETAIL = 'Detail',
+  REVIEW = 'Review'
 }

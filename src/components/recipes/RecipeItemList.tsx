@@ -17,6 +17,7 @@ const RecipeItemList = memo(() => {
   const renderRecipeItem: FC<{ item: any }> = ({ item }) => {
     return (
       <RecipeItem
+        id={item._id}
         image={item.imagePath}
         name={item.name}
         numOfRating={item.startAverage}

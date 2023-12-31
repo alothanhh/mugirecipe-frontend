@@ -2,12 +2,14 @@ import React, { memo, FC } from 'react';
 import { TouchableOpacity, Text, View } from 'react-native';
 import colors from '@/constants/colors';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+
 export type FoodCategoryProps = {
   content: string;
   icon: any;
   onPress: () => void;
   isTargeted: boolean;
 }
+
 const FoodCategory: FC<FoodCategoryProps> = memo(({content, icon, onPress, isTargeted}) => {
   return (
     <View className="">

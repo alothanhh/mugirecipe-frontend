@@ -11,11 +11,17 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { HeaderStyles } from '@/styles/globalStyles';
 // Types
 import { HomeScreens } from './index';
+import RecipeContainer from '@/components/recipes/RecipeContainer';
+import Detail from '@/components/recipes/detail/Detail';
+import Review from '@/components/recipes/detail/reviews/Reviews';
+
 export type HomeStackParamList = {
   [HomeScreens.HOME]: undefined;
   [HomeScreens.TRENDING]: undefined;
   [HomeScreens.NOTIFICATION]: undefined;
   [HomeScreens.SEARCH]: undefined;
+  [HomeScreens.DETAIL]: {id: string} | undefined;
+  [HomeScreens.REVIEW]: undefined;
 };
 
 const Stack = createNativeStackNavigator<HomeStackParamList>();
@@ -61,6 +67,9 @@ const HomeContainer = () => {
           headerTitle: "Search/Scanning results"
         }}
       />
+      <Stack.Screen name={HomeScreens.DETAIL} component={Detail} options={{headerTitle: "", headerShown: true}}/>
+      <Stack.Screen name={HomeScreens.REVIEW} component={Review} options={{headerTitle: "", headerShown: true}}/>
+      {/* <Stack.Screen name={HomeScreens.DETAIL} component={RecipeContainer} options={{headerTitle: "", headerShown: false}}/> */}
     </Stack.Navigator>
   );
 };
