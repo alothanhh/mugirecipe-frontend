@@ -1,6 +1,14 @@
 import { Camera, CameraType } from 'expo-camera';
 import React, { useState, useEffect, useRef, memo, FC } from 'react';
-import { Button, StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native';
+import {
+  Button,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+  Image,
+} from 'react-native';
+import { useIsFocused } from '@react-navigation/native';
 import colors from '@/constants/colors';
 
 import { MaterialIcons } from '@expo/vector-icons';
@@ -13,13 +21,16 @@ export type ScanningProps = {
 };
 
 const Scanning: FC<ScanningProps> = memo(({ navigation }) => {
+  const isFocused = useIsFocused();
   const [type, setType] = useState(CameraType.back);
   const [permission, requestPermission] = Camera.useCameraPermissions();
   // const [preview, setPreview] = useState();
 
-  const ref = useRef(null)
+  const ref = useRef(null);
   function toggleCameraType() {
-    setType(current => (current === CameraType.back ? CameraType.front : CameraType.back));
+    setType((current) =>
+      current === CameraType.back ? CameraType.front : CameraType.back
+    );
   }
 
   if (!permission) {
@@ -31,7 +42,9 @@ const Scanning: FC<ScanningProps> = memo(({ navigation }) => {
     // Camera permissions are not granted yet
     return (
       <View style={styles.container}>
-        <Text style={{ textAlign: 'center' }}>We need your permission to show the camera</Text>
+        <Text style={{ textAlign: 'center' }}>
+          We need your permission to show the camera
+        </Text>
         <Button onPress={requestPermission} title="grant permission" />
       </View>
     );
@@ -40,8 +53,8 @@ const Scanning: FC<ScanningProps> = memo(({ navigation }) => {
   let options = {
     quality: 1,
     base64: true,
-    exif: false
-  }
+    exif: false,
+  };
 
   const _takePhoto = async () => {
     if (ref.current) {
@@ -49,12 +62,12 @@ const Scanning: FC<ScanningProps> = memo(({ navigation }) => {
       // console.log(photo)
       // setUri(photo.uri);
       navigation.navigate(ScanningScreens.PREVIEW, {
-        data: photo.base64
-      })
+        data: photo.base64,
+      });
     } else {
       console.error('Ref is null.');
     }
-  }
+  };
 
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
@@ -65,41 +78,50 @@ const Scanning: FC<ScanningProps> = memo(({ navigation }) => {
       quality: 1,
       base64: true,
     });
-    
+
     console.log(result);
 
     if (!result.canceled) {
       navigation.navigate(ScanningScreens.PREVIEW, {
-        data: result.assets[0].base64
+        data: result.assets[0].base64,
       });
     }
   };
 
   return (
     <View style={styles.container}>
-      <Camera style={styles.camera} type={type} ref={ref}>
-        <View style={styles.buttonContainer}>
-          <View style={styles.listButton}>
-            <TouchableOpacity style={styles.button} onPress={toggleCameraType}>
-              <MaterialIcons name="flip-camera-android" size={24} color="white" />
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.button} onPress={pickImage}>
-              <MaterialIcons name="add-photo-alternate" size={24} color="white" />
-            </TouchableOpacity>
+      {isFocused && (
+        <Camera style={styles.camera} type={type} ref={ref}>
+          <View style={styles.buttonContainer}>
+            <View style={styles.listButton}>
+              <TouchableOpacity
+                style={styles.button}
+                onPress={toggleCameraType}
+              >
+                <MaterialIcons
+                  name="flip-camera-android"
+                  size={24}
+                  color="white"
+                />
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.button} onPress={pickImage}>
+                <MaterialIcons
+                  name="add-photo-alternate"
+                  size={24}
+                  color="white"
+                />
+              </TouchableOpacity>
+            </View>
           </View>
-        </View>
-        <TouchableOpacity
-          style={styles.snapphoto}
-          onPress={_takePhoto}
-        >
-          <Text style={styles.text}>Snap Photo</Text>
-        </TouchableOpacity>
-      </Camera>
+          <TouchableOpacity style={styles.snapphoto} onPress={_takePhoto}>
+            <Text style={styles.text}>Snap Photo</Text>
+          </TouchableOpacity>
+        </Camera>
+      )}
       {/* Preview Image */}
     </View>
   );
 });
-
 
 const styles = StyleSheet.create({
   container: {
@@ -150,6 +172,5 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 });
-
 
 export default Scanning;

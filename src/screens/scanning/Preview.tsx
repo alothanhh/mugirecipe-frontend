@@ -2,7 +2,7 @@ import { Camera, CameraType } from 'expo-camera';
 import React, { useState, useEffect, useRef, memo, FC } from 'react';
 import { Button, StyleSheet, Text, TouchableOpacity, View, Image, ActivityIndicator } from 'react-native';
 import colors from '@/constants/colors';
-
+import axios from 'axios';
 import { MaterialIcons } from '@expo/vector-icons';
 
 import { useRoute, RouteProp } from '@react-navigation/native';
@@ -61,24 +61,21 @@ const Preview: FC<PreviewProps> = memo(({ navigation }) => {
     });
 
     const requestOptions = {
-        method: 'POST',
         headers: {
             'Accept': 'application/json',
             'Authorization': 'Key ' + PAT
-        },
-        body: raw
+        }
     };
-
+    
     // NOTE: MODEL_VERSION_ID is optional, you can also call prediction with the MODEL_ID only
     // https://api.clarifai.com/v2/models/{YOUR_MODEL_ID}/outputs
     // this will default to the latest version_id
-
-    const [result, setResult] = useState('')
-
-    fetch("https://api.clarifai.com/v2/models/" + MODEL_ID + "/versions/" + MODEL_VERSION_ID + "/outputs", requestOptions)
-        .then(response => response.json())
-        .then(result => {
-            setResult(result.outputs[0].data.concepts[0].name);
+    
+    const [result, setResult] = useState('');
+    
+    axios.post(`https://api.clarifai.com/v2/models/${MODEL_ID}/versions/${MODEL_VERSION_ID}/outputs`, raw, requestOptions)
+        .then(response => {
+            setResult(response.data.outputs[0].data.concepts[0].name);
         })
         .catch(error => console.log('error', error));
 
