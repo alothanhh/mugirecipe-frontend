@@ -80,6 +80,16 @@ const styles = StyleSheet.create({
     width: '42%',
     marginTop: -135,
     marginLeft: 200,
+  },
+  reviewContainerIOS: {
+    position: 'absolute',
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    paddingVertical: 10,
+    borderRadius: 20,
+    width: '42%',
+    marginTop: -135,
+    marginLeft: 220,
   }
 });
 

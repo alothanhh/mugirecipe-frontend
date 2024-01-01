@@ -1,6 +1,6 @@
 import React, { useLayoutEffect, useState, useEffect, FC } from "react";
 import { useQuery } from '@tanstack/react-query';
-import { ScrollView, Text, View, Image, TouchableHighlight, ImageBackground, FlatList, SafeAreaView } from "react-native";
+import { ScrollView, Text, View, Image, TouchableHighlight, ImageBackground, FlatList, SafeAreaView, Platform } from "react-native";
 import { Overlay } from 'react-native-elements';
 import { AirbnbRating } from "react-native-elements";
 import styles from "./styles";
@@ -22,8 +22,8 @@ const useAppNavigation = () => {
 };
 
 interface DetailProps {
-  navigation: any; 
-  route: any; 
+  navigation: any;
+  route: any;
 };
 
 interface food {
@@ -31,24 +31,24 @@ interface food {
   quantity: string
 };
 
-let i : number = 0;
+let i: number = 0;
 
-let testList : Array<food> = [
-  {name: "Tomatos", quantity: "500"}, 
-  {name: "Cabbages", quantity: "300"},
-  {name: "Taco", quantity: "300"},
-  {name: "Slice Bread", quantity: "300"},
-  {name: "Green Union", quantity: "300"},
-  {name: "Eggs", quantity: "2"},
-  {name: "Sugar", quantity: "100"},
-  {name: "Salt", quantity: "10"},
-  {name: "Potatos", quantity: "500"},
-  {name: "Chili", quantity: "50"},
-  {name: "Oil", quantity: "10"},
-  {name: "Fruit", quantity: "120"}
+let testList: Array<food> = [
+  { name: "Tomatos", quantity: "500" },
+  { name: "Cabbages", quantity: "300" },
+  { name: "Taco", quantity: "300" },
+  { name: "Slice Bread", quantity: "300" },
+  { name: "Green Union", quantity: "300" },
+  { name: "Eggs", quantity: "2" },
+  { name: "Sugar", quantity: "100" },
+  { name: "Salt", quantity: "10" },
+  { name: "Potatos", quantity: "500" },
+  { name: "Chili", quantity: "50" },
+  { name: "Oil", quantity: "10" },
+  { name: "Fruit", quantity: "120" }
 ];
 
-let testProcedure : Array<string> = [
+let testProcedure: Array<string> = [
   "Lorem Ipsum tempor incididunt ut labore et dolore,in voluptate velit esse cillum dolore eu fugiat nulla pariatur?",
   "Lorem Ipsum tempor incididunt ut labore et dolore,in voluptate velit esse cillum dolore eu fugiat nulla pariatur? Tempor incididunt ut labore et dolore,in voluptate velit esse cillum dolore eu fugiat nulla pariatur?",
   "Lorem Ipsum tempor incididunt ut labore et dolore,in voluptate velit esse cillum dolore eu fugiat nulla pariatur?",
@@ -56,14 +56,14 @@ let testProcedure : Array<string> = [
   "Lorem Ipsum tempor incididunt ut labore et dolore,in voluptate velit esse cillum dolore eu fugiat nulla pariatur?",
   "Lorem Ipsum tempor incididunt ut labore et dolore,in voluptate velit esse cillum dolore eu fugiat nulla pariatur? Lorem Ipsum tempor incididunt ut labore et dolore,in voluptate velit esse cillum dolore eu fugiat nulla pariatur?",
   "Lorem Ipsum tempor incididunt ut labore et dolore,in voluptate velit esse cillum dolore eu fugiat nulla pariatur?",
-  "Lorem Ipsum tempor incididunt ut labore et dolore,in voluptate velit esse cillum dolore eu fugiat nulla pariatur?", 
+  "Lorem Ipsum tempor incididunt ut labore et dolore,in voluptate velit esse cillum dolore eu fugiat nulla pariatur?",
   "Lorem Ipsum tempor incididunt ut labore et dolore,in voluptate velit esse cillum dolore eu fugiat nulla pariatur?",
   "Lorem Ipsum tempor incididunt ut labore et dolore,in voluptate velit esse cillum dolore eu fugiat nulla pariatur?"
 ];
 
-function FoodList({foodList} : {foodList: Array<food>}) {
-  
-  const renderFoodList: FC<{item: any}> = ({item}) => {
+function FoodList({ foodList }: { foodList: Array<food> }) {
+
+  const renderFoodList: FC<{ item: any }> = ({ item }) => {
     return (
       <View style={{
         flexDirection: "column",
@@ -102,9 +102,9 @@ function FoodList({foodList} : {foodList: Array<food>}) {
   )
 }
 
-function Procedure({testProcedure} : {testProcedure: Array<string>}) {
-  
-  const renderProcedureList: FC<{item: any}> = ({item}) => {
+function Procedure({ testProcedure }: { testProcedure: Array<string> }) {
+
+  const renderProcedureList: FC<{ item: any }> = ({ item }) => {
     return (
       <View style={{
         flexDirection: 'column',
@@ -124,7 +124,7 @@ function Procedure({testProcedure} : {testProcedure: Array<string>}) {
           fontSize: 15,
           fontWeight: '600',
           marginBottom: 5
-        }}>Step {i = (i < testProcedure.length) ? i+1 : 1}</Text>
+        }}>Step {i = (i < testProcedure.length) ? i + 1 : 1}</Text>
         <Text style={{
           alignItems: "flex-start",
           fontSize: 13
@@ -155,10 +155,10 @@ const Detail: React.FC<DetailProps> = ({ navigation, route }) => {
   console.log("data =", data);
 
   const navigate = useAppNavigation();
-  const[state, setState] = useState(0);
-  const[visible, setVisible] = useState(false);
-  const[share, setShare] = useState(false);
-  const[rate, setRate] = useState(false);
+  const [state, setState] = useState(0);
+  const [visible, setVisible] = useState(false);
+  const [share, setShare] = useState(false);
+  const [rate, setRate] = useState(false);
   // const[data, setData] = useState([]);
 
   // useEffect(() => {
@@ -223,7 +223,8 @@ const Detail: React.FC<DetailProps> = ({ navigation, route }) => {
         }}>Recipe Link</Text>
         <Text style={{
           fontSize: 14,
-          marginBottom: 20}}>Copy recipe link and share your recipe link with  friends and family.</Text>
+          marginBottom: 20
+        }}>Copy recipe link and share your recipe link with  friends and family.</Text>
         <View style={{
           flexDirection: 'row',
           backgroundColor: '#D9D9D9',
@@ -235,7 +236,8 @@ const Detail: React.FC<DetailProps> = ({ navigation, route }) => {
             fontSize: 14,
             paddingHorizontal: 20,
             paddingVertical: 10,
-            fontWeight: '500'}}>app.Recipe.co/jollof_rice</Text>
+            fontWeight: '500'
+          }}>app.Recipe.co/jollof_rice</Text>
           <Text style={{
             backgroundColor: '#B73E3E',
             color: 'white',
@@ -243,7 +245,8 @@ const Detail: React.FC<DetailProps> = ({ navigation, route }) => {
             marginLeft: 10,
             fontSize: 14,
             paddingHorizontal: 20,
-            paddingVertical: 10}}>Copy Link</Text>
+            paddingVertical: 10
+          }}>Copy Link</Text>
         </View>
       </Overlay>
     );
@@ -264,14 +267,15 @@ const Detail: React.FC<DetailProps> = ({ navigation, route }) => {
         }}>
           Rate Recipe
         </Text>
-        <AirbnbRating size={24} reviewSize={0} starContainerStyle={{marginBottom: 25}} defaultRating={rating}/>
+        <AirbnbRating size={24} reviewSize={0} starContainerStyle={{ marginBottom: 25 }} defaultRating={rating} />
         <Text style={{
-          textAlign: "center", 
-          backgroundColor: '#D9D9D9', 
+          textAlign: "center",
+          backgroundColor: '#D9D9D9',
           marginHorizontal: 90,
           paddingVertical: 10,
-          marginBottom: 20, 
-          borderRadius: 10}}>Send</Text>
+          marginBottom: 20,
+          borderRadius: 10
+        }}>Send</Text>
       </Overlay>
     );
   }
@@ -280,23 +284,23 @@ const Detail: React.FC<DetailProps> = ({ navigation, route }) => {
     if (state == 0) return (
       <View>
         <View style={{
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginTop: 45,
-        marginBottom: 20
+          flexDirection: 'row',
+          alignItems: 'center',
+          marginTop: 45,
+          marginBottom: 20
         }}>
-          <TouchableHighlight 
-            style={{ flex: 1, backgroundColor: '#B73E3E', borderRadius: 20, marginLeft: 50, paddingHorizontal: 30, paddingVertical: 10}} 
+          <TouchableHighlight
+            style={{ flex: 1, backgroundColor: '#B73E3E', borderRadius: 20, marginLeft: 50, paddingHorizontal: 30, paddingVertical: 10 }}
             onPress={() => setState(0)} underlayColor='#B73E3E'>
-            <Text 
-              style={{ color: 'white', backgroundColor: '#B73E3E', fontSize: 14, textAlign: 'center', fontWeight: '600'}}>
+            <Text
+              style={{ color: 'white', backgroundColor: '#B73E3E', fontSize: 14, textAlign: 'center', fontWeight: '600' }}>
               Ingredient
             </Text>
           </TouchableHighlight>
-          <TouchableHighlight 
-            style={{ flex: 1, borderRadius: 20, marginRight: 50, paddingHorizontal: 30, paddingVertical: 10}}
+          <TouchableHighlight
+            style={{ flex: 1, borderRadius: 20, marginRight: 50, paddingHorizontal: 30, paddingVertical: 10 }}
             onPress={() => setState(1)} underlayColor='#E2DEDE'>
-            <Text style={{ textAlign: 'center', color: '#B73E3E', fontSize: 14, fontWeight: '600'}}>
+            <Text style={{ textAlign: 'center', color: '#B73E3E', fontSize: 14, fontWeight: '600' }}>
               Procedure
             </Text>
           </TouchableHighlight>
@@ -310,18 +314,18 @@ const Detail: React.FC<DetailProps> = ({ navigation, route }) => {
         marginTop: 45,
         marginBottom: 20
       }}>
-        <TouchableHighlight 
-          style={{flex: 1, borderRadius: 20, marginLeft: 50, paddingHorizontal: 30, paddingVertical: 10}} 
+        <TouchableHighlight
+          style={{ flex: 1, borderRadius: 20, marginLeft: 50, paddingHorizontal: 30, paddingVertical: 10 }}
           onPress={() => setState(0)} underlayColor='#E2DEDE'>
-          <Text 
-            style={{textAlign: 'center', color: '#B73E3E', fontSize: 14, fontWeight: '600'}}>
+          <Text
+            style={{ textAlign: 'center', color: '#B73E3E', fontSize: 14, fontWeight: '600' }}>
             Ingredient
           </Text>
         </TouchableHighlight>
-        <TouchableHighlight 
-          style={{flex: 1, backgroundColor: '#B73E3E', borderRadius: 20, marginRight: 50, paddingHorizontal: 30, paddingVertical: 10}}
+        <TouchableHighlight
+          style={{ flex: 1, backgroundColor: '#B73E3E', borderRadius: 20, marginRight: 50, paddingHorizontal: 30, paddingVertical: 10 }}
           onPress={() => setState(1)} underlayColor='#B73E3E'>
-          <Text style={{ color: 'white', backgroundColor: '#B73E3E', fontSize: 14, textAlign: 'center', fontWeight: '600'}}>
+          <Text style={{ color: 'white', backgroundColor: '#B73E3E', fontSize: 14, textAlign: 'center', fontWeight: '600' }}>
             Procedure
           </Text>
         </TouchableHighlight>
@@ -338,39 +342,48 @@ const Detail: React.FC<DetailProps> = ({ navigation, route }) => {
         //     navigation.goBack();
         //   }}
         // />
-        <Arrow onPress={() => navigation.goBack()}/>
+        <Arrow onPress={() => navigation.goBack()} />
       ),
       headerRight: () => (
-        <TouchableHighlight 
+        <TouchableHighlight
           onPress={toggleOverlay}
-          style={{ borderRadius: 180}} underlayColor='#E2DEDE'>
+          style={{ borderRadius: 180 }} underlayColor='#E2DEDE'>
           <AntDesign name="ellipsis1" size={34} color="black" />
         </TouchableHighlight>
       ),
     });
   }, [navigation]);
 
-  if(data) {
+  if (data) {
     testList = data.ingredients;
     testProcedure = data.procedure;
     return (
       <SafeAreaView style={styles.container}>
         <View style={styles.carouselContainer}>
-          <View style={{borderColor: 'red', marginHorizontal: 18, height: 170, marginTop: 80}}>
-            <ImageBackground style={styles.food_image} 
-                source={{uri: data.imagePath}} 
-                borderRadius={10}>
-              <LinearGradient colors={['#00000000', '#444444']} 
-              style={{height : '100%', width : '100%', borderRadius: 10}}/>
+          {Platform.OS === 'ios' ? <View style={{ borderColor: 'red', marginHorizontal: 18, height: 170, marginTop: 20 }}>
+            <ImageBackground style={styles.food_image}
+              source={{ uri: data.imagePath }}
+              borderRadius={10}>
+              <LinearGradient colors={['#00000000', '#444444']}
+                style={{ height: '100%', width: '100%', borderRadius: 10 }} />
             </ImageBackground>
-          </View>
+          </View> :
+            <View style={{ borderColor: 'red', marginHorizontal: 18, height: 170, marginTop: 80 }}>
+              <ImageBackground style={styles.food_image}
+                source={{ uri: data.imagePath }}
+                borderRadius={10}>
+                <LinearGradient colors={['#00000000', '#444444']}
+                  style={{ height: '100%', width: '100%', borderRadius: 10 }} />
+              </ImageBackground>
+            </View>
+          }
           <View style={styles.footVideo}>
             <View style={styles.timeContainer}>
-              <Entypo name="stopwatch" size={14} color="#D9D9D9" style={styles.infoPhoto}/>
+              <Entypo name="stopwatch" size={14} color="#D9D9D9" style={styles.infoPhoto} />
               <Text style={styles.timeText}>{data.time} min</Text>
             </View>
             <View>
-              <Image style={styles.in_active} source={require("../../../../assets/icon/Inactive.png")}/>
+              <Image style={styles.in_active} source={require("../../../../assets/icon/Inactive.png")} />
             </View>
           </View>
         </View>
@@ -380,10 +393,10 @@ const Detail: React.FC<DetailProps> = ({ navigation, route }) => {
           </Text>
         </View>
         <View style={{
-            alignItems: 'center',
-            flexDirection: 'row',
-            left: 2, 
-            marginTop: 10,
+          alignItems: 'center',
+          flexDirection: 'row',
+          left: 2,
+          marginTop: 10,
         }}>
           <View style={styles.rateContainer}>
             <TouchableHighlight onPress={() => setRate(true)} style={{}} underlayColor='none'>
@@ -398,27 +411,43 @@ const Detail: React.FC<DetailProps> = ({ navigation, route }) => {
                 }}>
                   {data.startAverage}
                 </Text>
-                <Text style={{paddingVertical: 2}}>
+                <Text style={{ paddingVertical: 2 }}>
                   ({data.reviewsCount} Reviews)
                 </Text>
               </View>
             </TouchableHighlight>
           </View>
-          <View style={styles.reviewContainer}>
-            <TouchableHighlight underlayColor='#E2DEDE' style={{borderRadius: 20}} onPress={() => navigate.navigate(DetailScreens.REVIEW)}>
-              <View style={{flexDirection: 'row', paddingVertical: 10, paddingHorizontal: 6}}>
-                <Text style={{
-                  fontSize: 17,
-                  fontWeight: '800',
-                  color: '#B73E3E',
-                  marginRight: 1,
-                }}>
-                  See all Reviews
-                </Text>
-                <AntDesign name="right" size={23} color="#B73E3E"/>
-              </View>
-            </TouchableHighlight>
-          </View>
+          {Platform.OS === 'ios' ?
+            <View style={styles.reviewContainerIOS}>
+              <TouchableHighlight underlayColor='#E2DEDE' style={{ borderRadius: 20 }} onPress={() => navigate.navigate(DetailScreens.REVIEW)}>
+                <View style={{ flexDirection: 'row', paddingVertical: 10, paddingHorizontal: 6 }}>
+                  <Text style={{
+                    fontSize: 17,
+                    fontWeight: '800',
+                    color: '#B73E3E',
+                    marginRight: 1,
+                  }}>
+                    See all Reviews
+                  </Text>
+                  <AntDesign name="right" size={23} color="#B73E3E" />
+                </View>
+              </TouchableHighlight>
+            </View> : <View style={styles.reviewContainer}>
+              <TouchableHighlight underlayColor='#E2DEDE' style={{ borderRadius: 20 }} onPress={() => navigate.navigate(DetailScreens.REVIEW)}>
+                <View style={{ flexDirection: 'row', paddingVertical: 10, paddingHorizontal: 6 }}>
+                  <Text style={{
+                    fontSize: 17,
+                    fontWeight: '800',
+                    color: '#B73E3E',
+                    marginRight: 1,
+                  }}>
+                    See all Reviews
+                  </Text>
+                  <AntDesign name="right" size={23} color="#B73E3E" />
+                </View>
+              </TouchableHighlight>
+            </View>}
+
         </View>
         {Option(state)}
         <View style={{
@@ -426,14 +455,14 @@ const Detail: React.FC<DetailProps> = ({ navigation, route }) => {
           alignItems: "flex-start",
           marginVertical: 10
         }}>
-          <View style={{ 
+          <View style={{
             flexDirection: 'row',
             alignItems: "flex-start",
             marginLeft: '4%',
           }}>
             <MaterialCommunityIcons name="food-takeout-box-outline" size={20} color="black" style={{
               marginRight: 5,
-            }}/>
+            }} />
             <Text>1 serve</Text>
           </View>
           <View style={{
@@ -442,28 +471,28 @@ const Detail: React.FC<DetailProps> = ({ navigation, route }) => {
             <Text>10 items</Text>
           </View>
         </View>
-        {state == 0 ? <FoodList foodList={testList}/> : <Procedure testProcedure={testProcedure}/>}
+        {state == 0 ? <FoodList foodList={testList} /> : <Procedure testProcedure={testProcedure} />}
         <Overlay isVisible={visible} onBackdropPress={toggleOverlay} overlayStyle={{
           borderRadius: 12,
           marginRight: -190,
           marginTop: -550
         }}>
-          <TouchableHighlight style={{borderRadius: 180}} underlayColor='#E2DEDE' onPress={toggleShare}>
-            <View style={{flexDirection: 'row', marginHorizontal: 10, marginVertical: 10}}>
-              <FontAwesome5 name="share" size={20} color="black"/>
-              <Text style={{marginLeft: 20}}>Share</Text>
+          <TouchableHighlight style={{ borderRadius: 180 }} underlayColor='#E2DEDE' onPress={toggleShare}>
+            <View style={{ flexDirection: 'row', marginHorizontal: 10, marginVertical: 10 }}>
+              <FontAwesome5 name="share" size={20} color="black" />
+              <Text style={{ marginLeft: 20 }}>Share</Text>
             </View>
           </TouchableHighlight>
-          <TouchableHighlight style={{ borderRadius: 180}} underlayColor='#E2DEDE' onPress={toggleRate}>
-            <View style={{flexDirection: 'row', marginHorizontal: 10, marginVertical: 10, marginRight: 20}}>
+          <TouchableHighlight style={{ borderRadius: 180 }} underlayColor='#E2DEDE' onPress={toggleRate}>
+            <View style={{ flexDirection: 'row', marginHorizontal: 10, marginVertical: 10, marginRight: 20 }}>
               <Entypo name="star" size={20} color="black" />
-              <Text style={{marginLeft: 20}}>Rate Recipe</Text>
+              <Text style={{ marginLeft: 20 }}>Rate Recipe</Text>
             </View>
           </TouchableHighlight>
-          <TouchableHighlight style={{ borderRadius: 180}} underlayColor='#E2DEDE' onPress={() => {}}>
-            <View style={{flexDirection: 'row', marginHorizontal: 10, marginVertical: 10}}>
+          <TouchableHighlight style={{ borderRadius: 180 }} underlayColor='#E2DEDE' onPress={() => { }}>
+            <View style={{ flexDirection: 'row', marginHorizontal: 10, marginVertical: 10 }}>
               <MaterialCommunityIcons name="content-save-off" size={20} color="black" />
-              <Text style={{marginLeft: 20}}>Unsave</Text>
+              <Text style={{ marginLeft: 20 }}>Unsave</Text>
             </View>
           </TouchableHighlight>
         </Overlay>
