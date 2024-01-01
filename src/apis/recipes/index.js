@@ -12,6 +12,17 @@ export const fetchRecipeItems = async () => {
   }
 };
 
+export const fetchRecipeDetail = async (id) => {
+  try {
+    const response = await axios.get(BASE_URL + 'recipe/' + id);
+    // console.log(response.data);
+    return response.data;
+  } catch (err) {
+    console.log(err);
+    throw err;
+  }
+};
+
 export const searchRecipeItems = async (keyword) => {
   try {
     const response = await axios.get(BASE_URL + 'recipe/search', {

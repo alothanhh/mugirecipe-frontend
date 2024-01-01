@@ -9,7 +9,14 @@ import {
 import colors from '@/constants/colors';
 import { AntDesign } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
+import { NavigationProp, useNavigation } from "@react-navigation/native";
+import { RecipeParamList } from './RecipeContainer';
+import { RecipeScreens } from '.';
+import { HomeStackParamList } from '@/screens/home/HomeContainer';
+import { HomeScreens } from '@/screens/home';
+
 export type RecipeItemProps = {
+  id: string;
   image: string;
   name: string;
   numOfRating: number;
@@ -17,14 +24,21 @@ export type RecipeItemProps = {
   isFavorite?: boolean;
 };
 
+const useAppNavigation = () => {
+  return useNavigation<NavigationProp<HomeStackParamList>>();
+}
+
 const RecipeItem: FC<RecipeItemProps> = memo(
-  ({ image, name, numOfRating, numOfView, isFavorite }) => {
+  ({ id, image, name, numOfRating, numOfView, isFavorite }) => {
+
+    const navigate = useAppNavigation();
+
     const [isFavoriteItem, setIsFavoriteItem] = useState(isFavorite);
     const toggleFavoriteItemHandler = () => {
       setIsFavoriteItem((prev) => !prev);
     };
     return (
-      <TouchableOpacity className="bg-white rounded-[15px] w-full h-[132px] px-3">
+      <TouchableOpacity className="bg-white rounded-[15px] w-full h-[132px] px-3" onPress={() => navigate.navigate(HomeScreens.DETAIL, {id: id})}>
         {/* Inner Container */}
         <View className="flex flex-row justify-between items-start space-x-2  my-auto">
           {/* Image container */}

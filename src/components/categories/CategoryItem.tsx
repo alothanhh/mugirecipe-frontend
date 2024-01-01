@@ -1,16 +1,29 @@
+import { HomeScreens } from '@/screens/home';
+import { HomeStackParamList } from '@/screens/home/HomeContainer';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
 import React, { FC, memo } from 'react';
 import { View, Image, Text, TouchableOpacity } from 'react-native';
+
 export type CategoryItemProps = {
+  id: string;
   content: string;
   image: string;
   lowerPrice: number;
   upperPrice: number;
   usdPrice: number;
 };
+
+const useAppNavigation = () => {
+  return useNavigation<NavigationProp<HomeStackParamList>>();
+}
+
 const CategoryItem: FC<CategoryItemProps> = memo(
-  ({ content, image, lowerPrice, upperPrice, usdPrice }) => {
+  ({ id, content, image, lowerPrice, upperPrice, usdPrice }) => {
+    
+    const navigate = useAppNavigation();
+
     return (
-      <TouchableOpacity className="bg-white w-[233px] h-[308px] rounded-[15px]">
+      <TouchableOpacity className="bg-white w-[233px] h-[308px] rounded-[15px]" onPress={() => navigate.navigate(HomeScreens.DETAIL, {id: id})}>
         <View className="mx-auto my-auto w-[208px]">
           <View>
             <Image

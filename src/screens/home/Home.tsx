@@ -24,6 +24,7 @@ import SearchBar from '@/components/common/SearchBar';
 // Types
 import { HomeScreens } from '.';
 import ScreenWrapper from '@/components/common/ScreenWrapper';
+import RecipeContainer from '@/components/recipes/RecipeContainer';
 
 type HomeProps = {
   navigation: any;
@@ -57,7 +58,7 @@ const Home: FC<HomeProps> = memo(({ navigation }) => {
           </View>
           {/* Recipe Item */}
           <View>
-            <RecipeItemList numOfItems={MAX_RENDER_ITEMS} />
+            <RecipeItemList />
           </View>
         </View>
       </ScreenWrapper>
