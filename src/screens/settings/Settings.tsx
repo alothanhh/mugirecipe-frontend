@@ -15,8 +15,10 @@ import {
   BottomSheetModalProvider,
 } from '@gorhom/bottom-sheet';
 import { AntDesign } from '@expo/vector-icons';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useAuthContext } from '@/context/AuthContext';
+import ScreenWrapper from '@/components/common/ScreenWrapper';
 const Settings = () => {
+  const { onLogout } = useAuthContext();
   // ref
   const bottomSheetModalRef = useRef<BottomSheetModal>(null);
 
@@ -33,132 +35,133 @@ const Settings = () => {
 
   return (
     <BottomSheetModalProvider>
-      <View style={{ margin: 25, marginTop: 50 }}>
-        <Text style={styles.titleText}>
-          Settings
-          {'\n'}
-        </Text>
-        <View
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <TouchableOpacity
+      <ScreenWrapper>
+        <View style={{ margin: 0, marginTop: 50 }}>
+          <Text style={styles.titleText}>
+            Settings
+            {'\n'}
+          </Text>
+          <View
             style={{
-              backgroundColor: colors.white,
-              width: 370,
-              padding: 20,
-              borderRadius: 30,
-              marginTop: 20,
-              justifyContent: 'space-between',
-              alignItems: 'center',
               display: 'flex',
-              flexDirection: 'row',
-            }}
-            onPress={handlePresentModalPress}
-          >
-            <Text style={[styles.subTitleText, {}]}>Languages</Text>
-            <Image
-              source={{ uri: 'https://img.icons8.com/ios/50/more-than.png' }}
-              style={{ width: 30, height: 30 }}
-            />
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={{
-              backgroundColor: colors.white,
-              width: 370,
-              padding: 20,
-              borderRadius: 30,
-              marginTop: 20,
-              justifyContent: 'space-between',
+              flexDirection: 'column',
+              justifyContent: 'center',
               alignItems: 'center',
-              display: 'flex',
-              flexDirection: 'row',
             }}
           >
-            <Text style={[styles.subTitleText, {}]}>Policy</Text>
-            <Image
-              source={{ uri: 'https://img.icons8.com/ios/50/more-than.png' }}
-              style={{ width: 30, height: 30 }}
-            />
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={styles.buttonStyle}
-            onPress={async () => {
-              await AsyncStorage.clear();
-              // console.log(`clear token!`);
-              
-            }}
-          >
-            <Text
+            <TouchableOpacity
               style={{
-                color: colors.white,
-                alignSelf: 'center',
-                fontSize: 16,
-                fontWeight: '500',
-              }}
-            >
-              Log out
-            </Text>
-          </TouchableOpacity>
-        </View>
-        <BottomSheetModal
-          ref={bottomSheetModalRef}
-          index={1}
-          snapPoints={snapPoints}
-          onChange={handleSheetChanges}
-        >
-          <View>
-            <Text
-              style={[
-                styles.subTitleText,
-                { paddingLeft: 15, marginBottom: 10 },
-              ]}
-            >
-              Select language
-            </Text>
-          </View>
-          <View style={{ backgroundColor: colors.lightgray, height: '100%' }}>
-            <Text style={styles.label}>Recent</Text>
-            <View
-              style={{
-                backgroundColor: 'white',
-                padding: 15,
-                display: 'flex',
+                backgroundColor: colors.white,
+                width: '100%',
+                padding: 20,
+                borderRadius: 30,
+                marginTop: 20,
                 justifyContent: 'space-between',
+                alignItems: 'center',
+                display: 'flex',
+                flexDirection: 'row',
+              }}
+              onPress={handlePresentModalPress}
+            >
+              <Text style={[styles.subTitleText, {}]}>Languages</Text>
+              <Image
+                source={{ uri: 'https://img.icons8.com/ios/50/more-than.png' }}
+                style={{ width: 30, height: 30 }}
+              />
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={{
+                backgroundColor: colors.white,
+                width: '100%',
+                padding: 20,
+                borderRadius: 30,
+                marginTop: 20,
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                display: 'flex',
                 flexDirection: 'row',
               }}
             >
-              <Text style={[styles.subTitleText, { color: colors.green }]}>
-                English
-              </Text>
-              <AntDesign name="checkcircleo" size={24} color={colors.green} />
-            </View>
-            <Text style={styles.label}>All languages</Text>
-            <View
-              style={{
-                backgroundColor: 'white',
-                paddingTop: 10,
-                height: '100%',
+              <Text style={[styles.subTitleText, {}]}>Policy</Text>
+              <Image
+                source={{ uri: 'https://img.icons8.com/ios/50/more-than.png' }}
+                style={{ width: 30, height: 30 }}
+              />
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={styles.buttonStyle}
+              onPress={() => {
+                onLogout();
+                console.log(`clear token!`);
               }}
             >
+              <Text
+                style={{
+                  color: colors.white,
+                  alignSelf: 'center',
+                  fontSize: 16,
+                  fontWeight: '500',
+                }}
+              >
+                Log out
+              </Text>
+            </TouchableOpacity>
+          </View>
+          <BottomSheetModal
+            ref={bottomSheetModalRef}
+            index={1}
+            snapPoints={snapPoints}
+            onChange={handleSheetChanges}
+          >
+            <View>
               <Text
                 style={[
                   styles.subTitleText,
                   { paddingLeft: 15, marginBottom: 10 },
                 ]}
               >
-                Vietnamese
+                Select language
               </Text>
             </View>
-          </View>
-        </BottomSheetModal>
-      </View>
+            <View style={{ backgroundColor: colors.lightgray, height: '100%' }}>
+              <Text style={styles.label}>Recent</Text>
+              <View
+                style={{
+                  backgroundColor: 'white',
+                  padding: 15,
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  flexDirection: 'row',
+                }}
+              >
+                <Text style={[styles.subTitleText, { color: colors.green }]}>
+                  English
+                </Text>
+                <AntDesign name="checkcircleo" size={24} color={colors.green} />
+              </View>
+              <Text style={styles.label}>All languages</Text>
+              <View
+                style={{
+                  backgroundColor: 'white',
+                  paddingTop: 10,
+                  height: '100%',
+                }}
+              >
+                <Text
+                  style={[
+                    styles.subTitleText,
+                    { paddingLeft: 15, marginBottom: 10 },
+                  ]}
+                >
+                  Vietnamese
+                </Text>
+              </View>
+            </View>
+          </BottomSheetModal>
+        </View>
+      </ScreenWrapper>
     </BottomSheetModalProvider>
   );
 };

@@ -6,20 +6,22 @@ import FavoriteItemList from './components/FavoriteItemList';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import UnauthorizedOverlay from '../overlay/UnauthorizedOverlay';
 import LostConnectionOverlay from '../overlay/LostConnectionOverlay';
+import { useAuthContext } from '@/context/AuthContext';
 // export type FavoriteProps = {
 //   navigation: any;
 // };
 
 const Favorite: FC = memo(() => {
-  const [isAuthenticated, setIsAuthenticated] = useState<string | null>('');
+  const {isAuthenticated} = useAuthContext();
+  // const [isAuthenticated, setIsAuthenticated] = useState<string | null>('');
 
-  useEffect(() => {
-    const getToken = async () => {
-      const token = await AsyncStorage.getItem('token');
-      setIsAuthenticated(token);
-    };
-    getToken();
-  }, [AsyncStorage.getItem]);
+  // useEffect(() => {
+  //   const getToken = async () => {
+  //     const token = await AsyncStorage.getItem('token');
+  //     setIsAuthenticated(token);
+  //   };
+  //   getToken();
+  // }, [AsyncStorage.getItem]);
   // console.log(`token = ${isAuthenticated}`);
   if (!isAuthenticated) {
     return <UnauthorizedOverlay />;

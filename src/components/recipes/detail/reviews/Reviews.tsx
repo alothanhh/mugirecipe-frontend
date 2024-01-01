@@ -5,6 +5,7 @@ import {AirbnbRating} from "react-native-elements";
 import {AntDesign, Entypo, MaterialCommunityIcons, FontAwesome5} from '@expo/vector-icons';
 import {LinearGradient} from 'expo-linear-gradient';
 import BackButton from "@/components/recipes/detail/components/BackButton/BackButton";
+import Arrow from "../../../../../assets/images/common/Arrow";
 
 interface ReviewProps {
   navigation: any; 
@@ -34,7 +35,7 @@ function Comments ({data} : {data: Array<User>}) {
           <Image source={require("../../../../../assets/images/avatar.jpg")} style={{width: 35, height: 35, borderRadius: 180}}/>
           <View style={{flexDirection: 'column', marginHorizontal: 15}}>
             <Text style={{fontWeight: '800'}}>{item.name}</Text>
-            <Text>{item.time}</Text>
+            <Text style={{color: '#A9A9A9'}}>{item.time}</Text>
           </View>
         </View>
         <Text>{item.cmt}</Text>
@@ -48,6 +49,8 @@ function Comments ({data} : {data: Array<User>}) {
       scrollEnabled={true}
       renderItem={renderReview}
       keyExtractor={(item: any) => item.id}
+      showsVerticalScrollIndicator={false}
+      showsHorizontalScrollIndicator={false}
     />
   );
 }
@@ -58,7 +61,7 @@ const Review: React.FC<ReviewProps> = ({ navigation, route }) => {
     navigation.setOptions({
       headerTransparent: true,
       headerLeft: () => (
-        <BackButton
+        <Arrow
           onPress={() => {
             navigation.goBack();
           }}
@@ -105,7 +108,8 @@ const Review: React.FC<ReviewProps> = ({ navigation, route }) => {
               fontSize: 15,
             }} inputContainerStyle={{borderBottomWidth:0}}/>
             <TouchableHighlight style={{
-              marginLeft: -50,
+              marginLeft: -60,
+              width: 67,
               borderRadius: 10,
               backgroundColor: '#B73E3E',
               paddingVertical: 10,
@@ -115,6 +119,7 @@ const Review: React.FC<ReviewProps> = ({ navigation, route }) => {
               color: 'white',
               fontSize: 13,
               fontWeight: '500',
+              textAlign: 'center'
             }}>Send</Text></TouchableHighlight>
         </View>
         <Comments data={data}/>

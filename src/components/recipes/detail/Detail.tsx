@@ -14,6 +14,7 @@ import axios from "axios";
 import { fetchRecipeDetail } from "@/apis/recipes";
 import ScreenWrapper from "@/components/common/ScreenWrapper";
 import { color } from "react-native-reanimated";
+import Arrow from "../../../../assets/images/common/Arrow";
 
 
 const useAppNavigation = () => {
@@ -67,26 +68,24 @@ function FoodList({foodList} : {foodList: Array<food>}) {
       <View style={{
         flexDirection: "column",
         alignItems: "flex-start",
-        marginBottom: 40,
+        flex: 1,
+        borderBottomColor: 'grey',
+        borderBottomWidth: 0.2,
+        marginHorizontal: 18,
+        paddingVertical: 10,
       }}>
         <View style={{
-          position: "absolute",
           flexDirection: 'row',
-          flex: 1,
-          borderBottomColor: 'grey',
-          borderBottomWidth: 0.2,
-          marginHorizontal: 18,
-          paddingBottom: 5
         }}>
           <Text style={{
-            flexDirection: 'row',
             alignItems: "flex-start",
-            fontSize: 17
+            fontSize: 17,
+            width: '70%'
           }}>{`${item.name}`}</Text>
           <Text style={{
             flex: 1,
             textAlign: 'right',
-            fontSize: 17
+            fontSize: 17,
           }}>{`${item.quantity}`}</Text>
         </View>
       </View>
@@ -334,11 +333,12 @@ const Detail: React.FC<DetailProps> = ({ navigation, route }) => {
     navigation.setOptions({
       headerTransparent: true,
       headerLeft: () => (
-        <BackButton
-          onPress={() => {
-            navigation.goBack();
-          }}
-        />
+        // <BackButton
+        //   onPress={() => {
+        //     navigation.goBack();
+        //   }}
+        // />
+        <Arrow onPress={() => navigation.goBack()}/>
       ),
       headerRight: () => (
         <TouchableHighlight 
@@ -360,8 +360,8 @@ const Detail: React.FC<DetailProps> = ({ navigation, route }) => {
             <ImageBackground style={styles.food_image} 
                 source={{uri: data.imagePath}} 
                 borderRadius={10}>
-              <LinearGradient colors={['#00000000', '#000000']} 
-              style={{height : '100%', width : '100%'}}/>
+              <LinearGradient colors={['#00000000', '#444444']} 
+              style={{height : '100%', width : '100%', borderRadius: 10}}/>
             </ImageBackground>
           </View>
           <View style={styles.footVideo}>
@@ -411,11 +411,11 @@ const Detail: React.FC<DetailProps> = ({ navigation, route }) => {
                   fontSize: 17,
                   fontWeight: '800',
                   color: '#B73E3E',
-                  marginRight: 1
+                  marginRight: 1,
                 }}>
                   See all Reviews
                 </Text>
-                <AntDesign name="right" size={22} color="#B73E3E"/>
+                <AntDesign name="right" size={23} color="#B73E3E"/>
               </View>
             </TouchableHighlight>
           </View>
