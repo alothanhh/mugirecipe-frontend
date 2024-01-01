@@ -12,17 +12,19 @@ import UnauthorizedOverlay from '../overlay/UnauthorizedOverlay';
 //Navigation import
 import { NavigationContainer } from '@react-navigation/native';
 // import { createStackNavigator } from '@react-navigation/stack';
+import { useAuthContext } from '@/context/AuthContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 const Profile = (props: any) => {
-  const [isAuthenticated, setIsAuthenticated] = useState<string | null>('');
+  const { isAuthenticated } = useAuthContext();
+  // const [isAuthenticated, setIsAuthenticated] = useState<string | null>('');
 
-  useEffect(() => {
-    const getToken = async () => {
-      const token = await AsyncStorage.getItem('token');
-      setIsAuthenticated(token);
-    };
-    getToken();
-  }, []);
+  // useEffect(() => {
+  //   const getToken = async () => {
+  //     const token = await AsyncStorage.getItem('token');
+  //     setIsAuthenticated(token);
+  //   };
+  //   getToken();
+  // }, []);
   // console.log(`token = ${isAuthenticated}`);
   if (!isAuthenticated) {
     return <UnauthorizedOverlay />;

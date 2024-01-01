@@ -25,7 +25,7 @@ import TitleContainer from './components/TitleContainer';
 import { HomeScreens } from '../home';
 import { RootScreens } from '..';
 import { useForm, Controller } from 'react-hook-form';
-
+import { useAuthContext } from '@/context/AuthContext';
 // APIs
 import { login } from '@/apis/authentication';
 // export type LoginProps = {
@@ -33,6 +33,7 @@ import { login } from '@/apis/authentication';
 // };
 
 const Login = memo(({ navigation }) => {
+  const { isAuthenticated, onLogin } = useAuthContext();
   const [isHiddenPassword, setIsHiddenPassword] = useState(true);
   const {
     control,
@@ -45,19 +46,20 @@ const Login = memo(({ navigation }) => {
     },
   });
   const submitHandler = async (data) => {
-    const {email, password} = data;
+    const { email, password } = data;
     console.log(`click login button`);
     try {
       const token = await login(email);
       // console.log(`token = ${token}`);
-      await AsyncStorage.setItem("token", token);
+      onLogin(token);
+      console.log(`isAuthenticated = ${isAuthenticated}`);
       // console.log(`stored token = ${await AsyncStorage.getItem("token")}`);
       navigation.replace(RootScreens.MAIN);
     } catch (err) {
       console.log(err);
       throw err;
-    } 
-  }
+    }
+  };
   return (
     <SafeAreaView style={styles.rootContainer}>
       <ScreenWrapper>
