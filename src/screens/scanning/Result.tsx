@@ -9,7 +9,7 @@ const Result = () => {
       <ScreenWrapper>
         <View className="space-y-2">
           <View style={{marginTop: 10}}>
-            <SearchBar />
+            {/* <SearchBar /> */}
           </View>
           <View>
             <FavoriteItemList />

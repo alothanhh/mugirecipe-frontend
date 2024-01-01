@@ -30,18 +30,18 @@ type HomeProps = {
   navigation: any;
 };
 const Home: FC<HomeProps> = memo(({ navigation }) => {
-  console.log(colors.white);
+  // console.log(colors.white);
   // const whiteColor = `text-[${colors.white}]`;
   // const primaryColor = `text-[${colors.primary}]`;
   // console.log(whiteColor);
-
+  const MAX_RENDER_ITEMS = 10;
   return (
     <SafeAreaView style={styles.rootContainer}>
       {/* Inner container */}
       <ScreenWrapper>
         <SearchBar navigation={navigation} />
         {/* Categories container */}
-        <View className="mt-2">
+        <View className="mt-3">
           <CategorySection />
         </View>
         {/* Trending Container */}
@@ -58,7 +58,6 @@ const Home: FC<HomeProps> = memo(({ navigation }) => {
           </View>
           {/* Recipe Item */}
           <View>
-            {/* <RecipeContainer/> */}
             <RecipeItemList />
           </View>
         </View>

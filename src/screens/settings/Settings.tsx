@@ -91,7 +91,7 @@ const Settings = () => {
             style={styles.buttonStyle}
             onPress={async () => {
               await AsyncStorage.clear();
-              console.log(`clear token!`);
+              // console.log(`clear token!`);
               
             }}
           >

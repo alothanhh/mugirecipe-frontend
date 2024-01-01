@@ -5,7 +5,7 @@ import ScreenWrapper from '@/components/common/ScreenWrapper';
 import FavoriteItemList from './components/FavoriteItemList';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import UnauthorizedOverlay from '../overlay/UnauthorizedOverlay';
-
+import LostConnectionOverlay from '../overlay/LostConnectionOverlay';
 // export type FavoriteProps = {
 //   navigation: any;
 // };
@@ -32,9 +32,11 @@ const Favorite: FC = memo(() => {
           {'\n'}
         </Text>
         <View className="space-y-4">
+
           <View>
-            <SearchBar />
+            {/* <SearchBar /> */}
           </View>
+
           <View>
             <FavoriteItemList />
           </View>

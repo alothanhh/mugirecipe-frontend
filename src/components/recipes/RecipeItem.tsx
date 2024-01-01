@@ -1,5 +1,11 @@
 import React, { FC, memo, useState } from 'react';
-import { TouchableOpacity, View, Text, Image } from 'react-native';
+import {
+  TouchableHighlight,
+  TouchableOpacity,
+  View,
+  Text,
+  Image,
+} from 'react-native';
 import colors from '@/constants/colors';
 import { AntDesign } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
@@ -65,9 +71,19 @@ const RecipeItem: FC<RecipeItemProps> = memo(
             {/* Button container */}
             <View className="flex flex-row items-center justify-end space-x-2">
               {isFavoriteItem ? (
-                <AntDesign name="heart" size={16} color={colors.primary} onPress={toggleFavoriteItemHandler} />
+                <AntDesign
+                  name="heart"
+                  size={16}
+                  color={colors.primary}
+                  onPress={toggleFavoriteItemHandler}
+                />
               ) : (
-                <AntDesign name="hearto" size={16} color="black" onPress={toggleFavoriteItemHandler} />
+                <AntDesign
+                  name="hearto"
+                  size={16}
+                  color="black"
+                  onPress={toggleFavoriteItemHandler}
+                />
               )}
               <FontAwesome name="share" size={16} color="black" />
             </View>

@@ -6,26 +6,31 @@ import FoodCategory from './FoodCategory';
 export type FoodCategoryListProps = {
   selectedId: string;
   setSelectedId: any;
+  refetch: any;
 };
 
 const FoodCategoryList: FC<FoodCategoryListProps> = ({
   selectedId,
   setSelectedId,
+  refetch,
 }) => {
-
-
   const renderFoodCategory = (itemData: any) => {
     const isTargeted = itemData.item.id == selectedId;
-    console.log(
-      `itemData.item.id = ${itemData.item.id}, selectedId = ${selectedId}`
-    );
-    
-    console.log(`isTargeted = ${isTargeted}`);
+    // console.log(
+    //   `itemData.item.id = ${itemData.item.id}, selectedId = ${selectedId}`
+    // );
 
+    // console.log(`isTargeted = ${isTargeted}`);
+    const changeCategoryHandler = () => {
+      setSelectedId(itemData.item.id);
+      setTimeout(() => {
+        refetch();
+      }, 0);
+    };
     return (
       <FoodCategory
         {...itemData.item}
-        onPress={() => setSelectedId(itemData.item.id)}
+        onPress={changeCategoryHandler}
         isTargeted={isTargeted}
       />
     );

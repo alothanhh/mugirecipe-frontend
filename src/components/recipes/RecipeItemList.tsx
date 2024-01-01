@@ -6,7 +6,11 @@ import VerticalListItemDivider from '../common/VerticalListItemDivider';
 import { useQuery } from '@tanstack/react-query';
 import { fetchRecipeItems } from '@/apis/recipes';
 
-const RecipeItemList = memo(() => {
+export type RecipeItemListProps = {
+  numOfItems: number | null;
+}
+
+const RecipeItemList: FC<RecipeItemListProps> = memo(({ numOfItems }) => {
   const { data, isError, isPending, error } = useQuery({
     queryKey: ['recipes'],
     queryFn: fetchRecipeItems,
@@ -29,6 +33,7 @@ const RecipeItemList = memo(() => {
     <SafeAreaView>
       <FlatList
         className=""
+        // data={numOfItems ? data.slice(0, numOfItems) : data}
         data={data}
         scrollEnabled={false} // remove duplicate scroll logic, because wrapper is scrollviiew
         renderItem={renderRecipeItem}

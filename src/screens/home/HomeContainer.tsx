@@ -11,9 +11,13 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { HeaderStyles } from '@/styles/globalStyles';
 // Types
 import { HomeScreens } from './index';
+
 import RecipeContainer from '@/components/recipes/RecipeContainer';
 import Detail from '@/components/recipes/detail/Detail';
 import Review from '@/components/recipes/detail/reviews/Reviews';
+
+import Arrow from '../../../assets/images/common/Arrow';
+
 
 export type HomeStackParamList = {
   [HomeScreens.HOME]: undefined;
@@ -50,6 +54,7 @@ const HomeContainer = () => {
         component={TrendingScreen}
         options={{
           ...HeaderStyles,
+          headerLeft: () => <Arrow onPress={() => navigation.goBack()} />,
         }}
       />
       <Stack.Screen
@@ -57,6 +62,7 @@ const HomeContainer = () => {
         component={NotificationScreen}
         options={{
           ...HeaderStyles,
+          headerLeft: () => <Arrow onPress={() => navigation.goBack()} />,
         }}
       />
       <Stack.Screen
@@ -64,7 +70,7 @@ const HomeContainer = () => {
         component={SearchScreen}
         options={{
           ...HeaderStyles,
-          headerTitle: "Search/Scanning results"
+          headerTitle: 'Search/Scanning results',
         }}
       />
       <Stack.Screen name={HomeScreens.DETAIL} component={Detail} options={{headerTitle: "", headerShown: true}}/>
