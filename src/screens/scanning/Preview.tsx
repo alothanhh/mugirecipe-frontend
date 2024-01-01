@@ -7,6 +7,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 
 import { useRoute, RouteProp } from '@react-navigation/native';
 import { ScanningScreens } from '.';
+import { useForm } from 'react-hook-form';
 
 export type PreviewProps = {
     navigation: any;
@@ -66,13 +67,13 @@ const Preview: FC<PreviewProps> = memo(({ navigation }) => {
             'Authorization': 'Key ' + PAT
         }
     };
-    
+
     // NOTE: MODEL_VERSION_ID is optional, you can also call prediction with the MODEL_ID only
     // https://api.clarifai.com/v2/models/{YOUR_MODEL_ID}/outputs
     // this will default to the latest version_id
-    
+
     const [result, setResult] = useState('');
-    
+
     axios.post(`https://api.clarifai.com/v2/models/${MODEL_ID}/versions/${MODEL_VERSION_ID}/outputs`, raw, requestOptions)
         .then(response => {
             setResult(response.data.outputs[0].data.concepts[0].name);
@@ -84,7 +85,7 @@ const Preview: FC<PreviewProps> = memo(({ navigation }) => {
             <Text style={[styles.subTitleText, { marginBottom: 10 }]}>
                 Your detected ingredient
             </Text>
-            {result === '' ? <ActivityIndicator size="large" style={{marginBottom: 10}} /> :
+            {result === '' ? <ActivityIndicator size="large" style={{ marginBottom: 10 }} /> :
                 <Text style={[styles.titleText, { marginBottom: 10 }]}>
                     {result}
                 </Text>}
@@ -110,7 +111,9 @@ const Preview: FC<PreviewProps> = memo(({ navigation }) => {
                 <TouchableOpacity
                     style={styles.buttonStyle}
                     onPress={() =>
-                        navigation.navigate(ScanningScreens.RESULT)
+                        navigation.navigate(ScanningScreens.SEARCH, {
+                            keyword: result,
+                          },)
                     }
                 >
                     <Text style={{
