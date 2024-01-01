@@ -7,7 +7,7 @@ import { useQuery } from '@tanstack/react-query';
 import { fetchRecipeItems } from '@/apis/recipes';
 
 export type RecipeItemListProps = {
-  numOfItems: number | null;
+  numOfItems?: number | null;
 }
 
 const RecipeItemList: FC<RecipeItemListProps> = memo(({ numOfItems }) => {
