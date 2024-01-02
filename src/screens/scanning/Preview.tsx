@@ -31,7 +31,7 @@ const Preview: FC<PreviewProps> = memo(({ navigation }) => {
     //////////////////////////////////////////////////////////////////////////////////////////////////
 
     // Your PAT (Personal Access Token) can be found in the portal under Authentification
-    const PAT = '9f173c8077074ad78adc896d9dddc268';
+    const PAT = '0626cf21df2746b783b78d70c90a420f';
     // Specify the correct user_id/app_id pairings
     // Since you're making inferences outside your app's scope
     const USER_ID = 'clarifai';
