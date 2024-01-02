@@ -33,7 +33,7 @@ import { login } from '@/apis/authentication';
 // };
 
 const Login = memo(({ navigation }) => {
-  const { isAuthenticated, onLogin } = useAuthContext();
+  const { isAuthenticated, token, onLogin } = useAuthContext();
   const [isHiddenPassword, setIsHiddenPassword] = useState(true);
   const {
     control,
@@ -52,12 +52,14 @@ const Login = memo(({ navigation }) => {
       const token = await login(email);
       // console.log(`token = ${token}`);
       onLogin(token);
-      console.log(`isAuthenticated = ${isAuthenticated}`);
       // console.log(`stored token = ${await AsyncStorage.getItem("token")}`);
       navigation.replace(RootScreens.MAIN);
+      // console.log(`isAuthenticated = ${isAuthenticated}`);
+      // console.log(`stored token = ${token}`);
     } catch (err) {
       console.log(err);
       throw err;
+    } finally {
     }
   };
   return (
