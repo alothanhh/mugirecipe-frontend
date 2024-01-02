@@ -3,17 +3,24 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Profile from './Scanning';
 import { ScanningScreens } from './index';
 import Preview from './Preview';
-import Result from './Result';
+import SearchScreen from '../search/Search';
+
+import { HeaderStyles } from '@/styles/globalStyles';
+import { useNavigation } from '@react-navigation/native';
+
+import Arrow from '../../../assets/images/common/Arrow';
 
 export type ScanningStackParamList = {
   [ScanningScreens.SCANNING]: undefined;
   [ScanningScreens.PREVIEW]: undefined;
-  [ScanningScreens.RESULT]: undefined;
+  [ScanningScreens.SEARCH]: undefined;
 };
 
 const Stack = createNativeStackNavigator<ScanningStackParamList>();
 
 const ScanningContainer = () => {
+  const navigation = useNavigation();
+  
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -27,9 +34,13 @@ const ScanningContainer = () => {
         options={{ headerShown: false, }}
       />
       <Stack.Screen
-        name={ScanningScreens.RESULT}
-        component={Result}
-        options={{ headerTitle: "Scanning Result" }}
+        name={ScanningScreens.SEARCH}
+        component={SearchScreen}
+        options={{
+          ...HeaderStyles,
+          // headerLeft: () => <Arrow onPress={() => navigation.goBack()} />,
+          headerTitle: 'Scanning results',
+        }}
       />
     </Stack.Navigator>
   );

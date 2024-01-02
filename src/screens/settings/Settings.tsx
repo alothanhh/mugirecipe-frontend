@@ -27,6 +27,8 @@ const Settings = () => {
 
   // callbacks
   const handlePresentModalPress = useCallback(() => {
+    if (bottomSheetModalRef.current)
+      bottomSheetModalRef.current?.dismiss();
     bottomSheetModalRef.current?.present();
   }, []);
   const handleSheetChanges = useCallback((index: number) => {

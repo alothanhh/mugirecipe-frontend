@@ -1,5 +1,6 @@
 import React, { FC, memo, useState } from 'react';
 import {
+  Platform,
   TouchableHighlight,
   TouchableOpacity,
   View,
@@ -38,17 +39,25 @@ const RecipeItem: FC<RecipeItemProps> = memo(
       setIsFavoriteItem((prev) => !prev);
     };
     return (
-      <TouchableOpacity className="bg-white rounded-[15px] w-full h-[132px] px-3" onPress={() => navigate.navigate(HomeScreens.DETAIL, {id: id})}>
+      <TouchableOpacity className="bg-white rounded-[15px] w-full h-[132px] px-3" onPress={() => navigate.navigate(HomeScreens.DETAIL, { id: id })}>
         {/* Inner Container */}
         <View className="flex flex-row justify-between items-start space-x-2  my-auto">
           {/* Image container */}
           <View>
-            <Image
-              className="h-[107px] w-[131px] rounded-[15px]"
-              source={{
-                uri: image,
-              }}
-            />
+            {
+              Platform.OS === 'ios' ?
+                <Image
+                  className="h-[107px] w-[145px] rounded-[15px]"
+                  source={{
+                    uri: image,
+                  }}
+                /> : <Image
+                  className="h-[107px] w-[131px] rounded-[15px]"
+                  source={{
+                    uri: image,
+                  }}
+                />
+            }
           </View>
           {/* Info container */}
           <View className="flex flex-col justify-between items-end h-[107px] ">

@@ -25,9 +25,9 @@ export const fetchRecipeDetail = async (id) => {
 
 export const searchRecipeItems = async (keyword) => {
   try {
-    const response = await axios.get(BASE_URL + 'recipe/search', {
+    const response = await axios.get(BASE_URL + 'recipe/detect', {
       params: {
-        name: keyword,
+        ingredient: keyword,
       },
     });
     return response.data;

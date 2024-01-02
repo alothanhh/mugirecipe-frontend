@@ -11,7 +11,8 @@ export type SearchProps = {
 const Search: FC<SearchProps> = memo(({navigation, route}) => {
   const {keyword} = route.params;
   // console.log(`keyword = ${keyword}`);
-  
+  console.log(keyword);
+
   return (
     <ScrollView>
       <ScreenWrapper>
