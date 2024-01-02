@@ -1,4 +1,4 @@
-import { BASE_URL } from '@env';
+import { BASE_URL } from '..';
 import axios from 'axios';
 
 export const fetchCategorizedItems = async (categoryId) => {

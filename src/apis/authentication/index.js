@@ -1,7 +1,8 @@
-import { BASE_URL } from '@env';
+import { BASE_URL } from '..';
 import axios from 'axios';
 
 export const login = async (email) => {
+  console.log(`baseURL = ${BASE_URL}`);
   try {
     const response = await axios.post(BASE_URL + 'users/login', {
       email: email,
