@@ -72,29 +72,93 @@ const Preview: FC<PreviewProps> = memo(({ navigation }) => {
     // https://api.clarifai.com/v2/models/{YOUR_MODEL_ID}/outputs
     // this will default to the latest version_id
 
-    const [result, setResult] = useState('');
+    const [result, setResult] = useState([]);
 
     axios.post(`https://api.clarifai.com/v2/models/${MODEL_ID}/versions/${MODEL_VERSION_ID}/outputs`, raw, requestOptions)
         .then(response => {
-            setResult(response.data.outputs[0].data.concepts[0].name);
+            setResult(response.data.outputs[0].data.concepts);
         })
         .catch(error => console.log('error', error));
 
     return (
         <View style={styles.container}>
             <Text style={[styles.subTitleText, { marginBottom: 10 }]}>
-                Your detected ingredient
+                Select 1 detected ingredient to continue
             </Text>
-            {result === '' ? <ActivityIndicator size="large" style={{ marginBottom: 10 }} /> :
-                <Text style={[styles.titleText, { marginBottom: 10 }]}>
-                    {result}
-                </Text>}
+            {result.length === 0 ? <ActivityIndicator size="large" style={{ marginBottom: 10 }} /> :
+                <View>
+                    <View style={{ display: 'flex', flexDirection: 'column', alignItems:'center' }}>
+                        <TouchableOpacity
+                            style={{ paddingRight: 20 }}
+                            onPress={() =>
+                                navigation.navigate(ScanningScreens.SEARCH, {
+                                    keyword: result[0].name,
+                                },)
+                            }
+                        >
+                            <Text style={[styles.titleText, { marginBottom: 10, color: colors.lightred }]}>
+                                {result[0].name}
+                            </Text>
+                        </TouchableOpacity>
+                        <View style={{ display: 'flex', flexDirection: 'row' }}>
+                            <TouchableOpacity
+                                style={{ paddingRight: 20 }}
+                                onPress={() =>
+                                    navigation.navigate(ScanningScreens.SEARCH, {
+                                        keyword: result[1].name,
+                                    },)
+                                }
+                            >
+                                <Text style={[styles.subTitleText, { marginBottom: 10, color: colors.lightred }]}>
+                                    {result[1].name}
+                                </Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                style={{ paddingRight: 20 }}
+                                onPress={() =>
+                                    navigation.navigate(ScanningScreens.SEARCH, {
+                                        keyword: result[2].name,
+                                    },)
+                                }
+                            >
+                                <Text style={[styles.subTitleText, { marginBottom: 10, color: colors.lightred }]}>
+                                    {result[2].name}
+                                </Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                style={{ paddingRight: 20 }}
+                                onPress={() =>
+                                    navigation.navigate(ScanningScreens.SEARCH, {
+                                        keyword: result[3].name,
+                                    },)
+                                }
+                            >
+                                <Text style={[styles.subTitleText, { marginBottom: 10, color: colors.lightred }]}>
+                                    {result[3].name}
+                                </Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity
+                                style={{ paddingRight: 20 }}
+                                onPress={() =>
+                                    navigation.navigate(ScanningScreens.SEARCH, {
+                                        keyword: result[4].name,
+                                    },)
+                                }
+                            >
+                                <Text style={[styles.subTitleText, { marginBottom: 10, color: colors.lightred }]}>
+                                    {result[4].name}
+                                </Text>
+                            </TouchableOpacity>
+                        </View>
+                    </View>
+                </View>
+            }
             {/* Preview Image */}
             <Image
                 style={styles.preview}
                 source={{ uri: `data:image/jpeg;base64,${data}` }}
             />
-            <View style={{ display: 'flex', justifyContent: 'space-between', flexDirection: 'row', width: '100%', paddingLeft: 30, paddingRight: 30 }}>
+            <View style={{ display: 'flex', alignContent: 'center', justifyContent: 'center', flexDirection: 'row', width: '100%', paddingLeft: 30, paddingRight: 30 }}>
                 <TouchableOpacity
                     style={styles.buttonStyle}
                     onPress={() =>
@@ -108,12 +172,12 @@ const Preview: FC<PreviewProps> = memo(({ navigation }) => {
                         fontWeight: '500',
                     }}>Back</Text>
                 </TouchableOpacity>
-                <TouchableOpacity
+                {/* <TouchableOpacity
                     style={styles.buttonStyle}
                     onPress={() =>
                         navigation.navigate(ScanningScreens.SEARCH, {
                             keyword: result,
-                          },)
+                        },)
                     }
                 >
                     <Text style={{
@@ -122,7 +186,7 @@ const Preview: FC<PreviewProps> = memo(({ navigation }) => {
                         fontSize: 16,
                         fontWeight: '500',
                     }}>Next</Text>
-                </TouchableOpacity>
+                </TouchableOpacity> */}
             </View>
         </View>
     );
@@ -138,7 +202,7 @@ const styles = StyleSheet.create({
         height: '100%'
     },
     preview: {
-        height: '75%',
+        height: '68%',
         width: '100%',
     },
     text: {
@@ -152,7 +216,7 @@ const styles = StyleSheet.create({
         fontWeight: '600', //bold
     },
     subTitleText: {
-        fontSize: 18,
+        fontSize: 16,
         fontWeight: '500',
     },
     textInfo: {
