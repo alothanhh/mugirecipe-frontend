@@ -1,10 +1,33 @@
-import React, { memo, FC } from 'react';
-import { SafeAreaView, StyleSheet } from 'react-native';
-
+import React, { memo, FC, useLayoutEffect } from 'react';
+import { SafeAreaView, StyleSheet, View } from 'react-native';
 import colors from '@/constants/colors';
 import NotificationItemList from './components/NotificationItemList';
 import ScreenWrapper from '@/components/common/ScreenWrapper';
-const Notification = memo(() => {
+import Arrow from '../../../assets/images/common/Arrow';
+
+interface NotiProps {
+  navigation: any;
+  route: any;
+};
+
+const Notification : React.FC<NotiProps> = memo(({navigation, route}) => {
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerTransparent: true,
+      headerLeft: () => (
+        <Arrow
+          onPress={() => {
+            navigation.goBack();
+          }}
+        />
+      ),
+      headerRight: () => (
+        <View></View>
+      ),
+    });
+  }, [navigation]);
+
   return (
     <SafeAreaView style={styles.rootContainer}>
       <ScreenWrapper>

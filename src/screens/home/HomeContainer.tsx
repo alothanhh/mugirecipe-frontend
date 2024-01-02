@@ -54,7 +54,7 @@ const HomeContainer = () => {
         component={TrendingScreen}
         options={{
           ...HeaderStyles,
-          headerLeft: () => <Arrow onPress={() => navigation.goBack()} />,
+          // headerLeft: () => <Arrow onPress={() => navigation.goBack()} />,
         }}
       />
       <Stack.Screen
@@ -62,7 +62,7 @@ const HomeContainer = () => {
         component={NotificationScreen}
         options={{
           ...HeaderStyles,
-          headerLeft: () => <Arrow onPress={() => navigation.goBack()} />,
+          // headerLeft: () => <Arrow onPress={() => navigation.goBack()} />,
         }}
       />
       <Stack.Screen
