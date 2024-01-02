@@ -6,6 +6,7 @@ import FavoriteItemList from './components/FavoriteItemList';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import UnauthorizedOverlay from '../overlay/UnauthorizedOverlay';
 import LostConnectionOverlay from '../overlay/LostConnectionOverlay';
+import SearchedRecipeItemList from '../search/components/SearchedRecipeItemList';
 import { useAuthContext } from '@/context/AuthContext';
 // export type FavoriteProps = {
 //   navigation: any;
@@ -40,7 +41,7 @@ const Favorite: FC = memo(() => {
           </View>
 
           <View>
-            <FavoriteItemList />
+            <SearchedRecipeItemList keyword='chicken' isFavorite={true} />
           </View>
         </View>
       </ScreenWrapper>

@@ -7,13 +7,14 @@ import { searchRecipeItems } from '@/apis/recipes';
 import EmptyList from '@/components/common/EmptyList';
 export type SearchedRecipeItemListProps = {
   keyword: string;
+  isFavorite?: boolean;
 };
 
 const SearchedRecipeItemList: FC<SearchedRecipeItemListProps> = memo(
-  ({ keyword }) => {
+  ({ keyword, isFavorite = false }) => {
     const { data, isError, isPending, error } = useQuery({
       queryKey: ['search'],
-      queryFn:() =>  searchRecipeItems(keyword),
+      queryFn: () => searchRecipeItems(keyword),
     });
     // if (data) {
     //   console.log(data);
@@ -26,11 +27,12 @@ const SearchedRecipeItemList: FC<SearchedRecipeItemListProps> = memo(
           name={item.name}
           numOfRating={item.startAverage}
           numOfView={item.viewsCount}
+          isFavorite={isFavorite}
         />
       );
     };
     // console.log(`search data = `, data);
-    
+
     return (
       <SafeAreaView>
         <FlatList
