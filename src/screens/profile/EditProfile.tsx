@@ -4,8 +4,8 @@ import colors from '@/constants/colors';
 
 
 const EditProfile = () => {
-  const [name, onChangeName] = React.useState('Tran Duc Tuan');
-  const [email, onChangeEmail] = React.useState('tranductuan@gmail.com');
+  const [name, onChangeName] = React.useState('Dang Quang Thanh');
+  const [email, onChangeEmail] = React.useState('thanh.dg@hcmut.edu.vn');
   const [phone, onChangePhone] = React.useState('0337268100');
   const [description, onChangeDescription] = React.useState('I am a com-sci student with a strong passion for cooking');
 

@@ -68,8 +68,8 @@ const Profile = (props: any) => {
           <View
             style={{ display: 'flex', flexDirection: 'column', marginTop: 10 }}
           >
-            <Text style={styles.subTitleText}>Tran Duc Tuan</Text>
-            <Text style={styles.textInfo}>tranductuan@gmail.com</Text>
+            <Text style={styles.subTitleText}>Dang Quang Thanh</Text>
+            <Text style={styles.textInfo}>thanh.dg@hcmut.edu.vn</Text>
             <View
               style={{
                 borderBottomColor: colors.darkgray,
