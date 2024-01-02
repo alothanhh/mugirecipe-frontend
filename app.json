@@ -34,7 +34,8 @@
       },
       "package": "com.hpcc.expo_redux_template",
       "permissions": [
-        "android.permission.CAMERA"
+        "android.permission.CAMERA",
+        "android.permission.RECORD_AUDIO"
       ]
     },
     "web": {
@@ -57,6 +58,10 @@
     "runtimeVersion": {
       "policy": "sdkVersion"
     },
-    "extra": {}
+    "extra": {
+      "eas": {
+        "projectId": "60bb63f9-b593-4318-9f15-909eb271b7a4"
+      }
+    }
   }
 }
