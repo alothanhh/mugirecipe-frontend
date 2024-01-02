@@ -336,14 +336,14 @@ const Detail: React.FC<DetailProps> = ({ navigation, route }) => {
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTransparent: true,
-      headerLeft: () => (
-        // <BackButton
-        //   onPress={() => {
-        //     navigation.goBack();
-        //   }}
-        // />
-        <Arrow onPress={() => navigation.goBack()} />
-      ),
+      // headerLeft: () => (
+      //   // <BackButton
+      //   //   onPress={() => {
+      //   //     navigation.goBack();
+      //   //   }}
+      //   // />
+      //   <Arrow onPress={() => navigation.goBack()} />
+      // ),
       headerRight: () => (
         <TouchableHighlight
           onPress={toggleOverlay}

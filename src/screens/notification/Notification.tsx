@@ -15,13 +15,13 @@ const Notification : React.FC<NotiProps> = memo(({navigation, route}) => {
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTransparent: true,
-      headerLeft: () => (
-        <Arrow
-          onPress={() => {
-            navigation.goBack();
-          }}
-        />
-      ),
+      // headerLeft: () => (
+      //   <Arrow
+      //     onPress={() => {
+      //       navigation.goBack();
+      //     }}
+      //   />
+      // ),
       headerRight: () => (
         <View></View>
       ),

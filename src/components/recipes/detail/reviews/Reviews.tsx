@@ -60,13 +60,13 @@ const Review: React.FC<ReviewProps> = ({ navigation, route }) => {
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTransparent: true,
-      headerLeft: () => (
-        <Arrow
-          onPress={() => {
-            navigation.goBack();
-          }}
-        />
-      ),
+      // headerLeft: () => (
+      //   <Arrow
+      //     onPress={() => {
+      //       navigation.goBack();
+      //     }}
+      //   />
+      // ),
       headerRight: () => (
         <View></View>
       ),

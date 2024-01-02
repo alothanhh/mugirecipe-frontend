@@ -15,13 +15,13 @@ const Trending: FC<TrendingProps> = ({navigation}) => {
   useLayoutEffect(() => {
     navigation.setOptions({
       headerTransparent: true,
-      headerLeft: () => (
-        <Arrow
-          onPress={() => {
-            navigation.goBack();
-          }}
-        />
-      ),
+      // headerLeft: () => (
+      //   <Arrow
+      //     onPress={() => {
+      //       navigation.goBack();
+      //     }}
+      //   />
+      // ),
       headerRight: () => (
         <View></View>
       ),
