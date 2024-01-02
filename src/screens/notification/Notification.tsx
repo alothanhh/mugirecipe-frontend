@@ -14,7 +14,7 @@ const Notification : React.FC<NotiProps> = memo(({navigation, route}) => {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      headerTransparent: true,
+      headerTransparent: false,
       headerLeft: () => (
         <Arrow
           onPress={() => {
