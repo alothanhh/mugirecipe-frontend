@@ -54,4 +54,6 @@ Reason and how to remove this issue: https://github.com/expo/expo-cli/issues/243
 
 If you have suggestions for how this template could be improved, or want to report a bug, please open an issue or a pull request. We welcome contributions from the community!
 
+## Link download our app
 
+https://drive.google.com/drive/folders/1a-wo8ZV2Z5OekVW3gbM4yNNfyNNThMtJ?usp=drive_link
